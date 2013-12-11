@@ -1,0 +1,21 @@
+<h2>Users (<%= @users.count %>)</h2>
+
+<table>
+  <th></th>
+  <th>Username</th>
+  <th>Email</th>
+  <th>Registration Date</th>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= button_to "X", user_url(user), method: :delete,
+              data: { confirm: "Are you sure you want to delete this user?" } %>
+      </td>
+
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at %></td>
+    </tr>
+  <% end %>
+</table>

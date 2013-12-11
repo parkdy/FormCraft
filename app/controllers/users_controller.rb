@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
+
   def index
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
-
-    if @user.nil?
-      flash[:error] = "user not found"
-      redirect_to root_url
-    end
   end
 
   def new
@@ -19,14 +15,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    if @user.nil?
-      flash[:error] = "user not found"
-      redirect_to root_url
-    elsif @user.save
-      flash[:success] = "created new user"
+    if @user.save
+      flash[:success] = "Created new user"
       redirect_to user_url(@user)
     else
-      flash[:errors] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end
@@ -35,31 +28,37 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # #update
+  # Handles PUT requests from both #edit and #change_password
   def update
     @user = User.find(params[:id])
 
-    if @user.nil?
-      flash[:error] = "user not found"
-      redirect_to root_url
-    elsif @user.updateAttributes(params[:user])
-      flash[:success] = "updated user"
+    if params[:user][:password] && !@user.authenticate(params[:current_password])
+      flash.now[:fail] = "Current password incorrect"
+      render :change_password
+    elsif @user.update_attributes(params[:user])
+      flash[:success] = "Updated user"
       redirect_to user_url(@user)
     else
-      flash[:errors] = @user.errors.full_messages
-      render :edit
+      flash.now[:errors] = @user.errors.full_messages
+
+      # Render change_password or edit template
+      render (params[:user][:password] ? :change_password : :edit)
     end
   end
 
   def destroy
     @user = User.find(params[:id])
 
-    if @user.nil?
-      flash[:error] = "user not found"
-      redirect_to root_url
-    else
-      @user.destroy
-      flash[:success] = "deleted user"
-      redirect_to users_url
-    end
+    @user.destroy
+    flash[:success] = "Deleted user"
+    redirect_to users_url
   end
+
+  # #change_password
+  # Show form to change password
+  def change_password
+    @user = User.find(params[:id])
+  end
+
 end

@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   #   #password=(passord)
   #   #password_confirmation=(password)
   #   #authenticate(password)
+  # and validates:
+  #   password
+  #   password_confirmation
+  #   password_digest
 
   has_secure_password
 
@@ -27,7 +31,6 @@ class User < ActiveRecord::Base
   # Validations
 
   validates :email,
-            :password_digest,
             :session_token,
             :username,
             presence: true

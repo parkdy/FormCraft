@@ -1,0 +1,14 @@
+<h2>Account</h2>
+
+<p>
+  Username: <%= @user.username %>
+</p>
+
+<p>
+  Email: <%= @user.email %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_user_url(@user) %>
+  <%= link_to "Change Password", change_password_user_url(@user) %>
+</p>

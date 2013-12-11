@@ -1,0 +1,21 @@
+<h2>Edit User</h2>
+
+<form action="<%= user_url(@user) %>" method="post">
+  <input type="hidden" name="_method" value="put">
+
+  <p>
+    <label>Username*:<br>
+      <input type="text" name="user[username]" value="<%= @user.username %>">
+    </label>
+  </p>
+
+  <p>
+    <label>Email*:<br>
+      <input type="email" name="user[email]" value="<%= @user.email %>">
+    </label>
+  </p>
+
+  <p>
+    <input type="submit" value="Update">
+  </p>
+</form>

@@ -1,6 +1,10 @@
 FormBuilder::Application.routes.draw do
 
-  resources :users
+  resources :users do
+    member do
+      get 'change_password'
+    end
+  end
 
   get 'signup' => 'users#new'
 

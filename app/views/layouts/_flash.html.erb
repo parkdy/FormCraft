@@ -1,0 +1,18 @@
+<ul id="flash_list">
+  <% flash.each do |key, value| %>
+    <% if value.is_a?(Array) %>
+        <% value.each do |subvalue| %>
+          <li class="flash_item flash_<%= key %>_item">
+            <%= subvalue %>
+          </li>
+        <% end %>
+      </ul>
+
+    <% else%>
+      <li class="flash_item">
+        <%= value %>
+      </li>
+
+    <% end %>
+  <% end %>
+</ul>
