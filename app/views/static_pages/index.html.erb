@@ -1,0 +1,19 @@
+<h2>Welcome to FormBuilder!</h2>
+
+<p>
+  This app lets you create custom online forms using a simple drag and drop interface.
+</p>
+
+<p>
+  We handle all of the technical details and host the form here on this site. Just share the link to your form and anyone can use it!
+</p>
+
+<p>
+  You can choose how you want to get your data. View it on this site, download it, or receive it by email!
+</p>
+
+<p>
+  <%= link_to "Sign In", "signin_url" %><br>
+  <%= link_to "Sign Up", signup_url %><br>
+  <%= link_to "Guest", 'signin_url(username: "Guest")' %><br>
+</p>
