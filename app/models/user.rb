@@ -53,6 +53,17 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64(16)
   end
 
+  # ::authenticate(username, password)
+  # Returns user if username and password authenticated,
+  # otherwise return false
+  def self.authenticate(username, password)
+    user = User.find_by_username(username)
+    return false if user.nil?
+
+    # Use has_secure_password method
+    user.authenticate(password)
+  end
+
 
 
   # Instance methods

@@ -1,0 +1,29 @@
+<h2>Sign In</h2>
+
+<form action="<%= session_url %>" method="post">
+  <%= render "shared/csrf" %>
+
+  <p>
+    <label>Username*:<br>
+      <input type="text" name="user[username]">
+    </label>
+  </p>
+
+  <p>
+    <label>Password*:<br>
+      <input type="password" name="user[password]">
+    </label>
+  </p>
+
+  <p>
+    <input type="submit" value="Sign In">
+  </p>
+</form>
+
+<p>
+  <%= link_to "Forgot Password?", forgot_password_users_url %>
+</p>
+
+<p>
+  <%= link_to "Cancel", root_url %>
+</p>

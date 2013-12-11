@@ -1,0 +1,26 @@
+<header>
+  <h1>FormBuilder</h1>
+
+  <nav id="session_nav">
+    <% if logged_in? %>
+      <ul>
+        <li class="session_nav_item">
+          <%= link_to current_user.username, user_url(current_user) %>
+        </li>
+        <li class="session_nav_item">
+          <%= button_to "Sign Out", session_url, method: :delete %>
+        </li>
+      </ul>
+
+    <% else %>
+      <ul>
+        <li class="session_nav_item">
+          <%= link_to "Sign Up", signup_url %>
+        </li>
+        <li class="session_nav_item">
+          <%= link_to "Sign In", signin_url %>
+        </li>
+      </ul>
+    <% end %>
+  </nav>
+</header>

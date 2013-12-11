@@ -9,7 +9,23 @@
 
 
 # Create users
-user = User.create!(username: "user",
-                    email: "user@example.com",
-                    password: "password",
-                    password_confirmation: "password")
+admin = User.create!(
+  username: "admin",
+  email: "admin@example.com",
+  password: "password",
+  password_confirmation: "password"
+)
+
+guest = User.create!(
+  username: "guest",
+  email: "guest@example.com",
+  password: "password",
+  password_confirmation: "password"
+)
+
+user = User.create!(
+  username: "user",
+  email: "user@example.com",
+  password: "password",
+  password_confirmation: "password"
+)

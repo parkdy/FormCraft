@@ -4,9 +4,16 @@ FormBuilder::Application.routes.draw do
     member do
       get 'change_password'
     end
+
+    collection do
+      get 'forgot_password'
+    end
   end
 
+  resource :session, only: [:new, :create, :destroy]
+
   get 'signup' => 'users#new'
+  get 'signin' => 'sessions#new'
 
   root to: 'static_pages#index'
 
