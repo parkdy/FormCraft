@@ -36,3 +36,15 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+
+# Rspec for testing
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+# Debugging Rails
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
