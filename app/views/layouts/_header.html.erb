@@ -2,7 +2,7 @@
   <h1>FormBuilder</h1>
 
   <nav id="session_nav">
-    <% if logged_in? %>
+    <% if signed_in? %>
       <ul>
         <li class="session_nav_item">
           <%= link_to current_user.username, user_url(current_user) %>

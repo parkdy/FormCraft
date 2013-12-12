@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_filter :require_sign_in, only: [:destroy]
+
   def new
   end
 

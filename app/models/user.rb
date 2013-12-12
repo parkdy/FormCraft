@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
                   :password_digest,
                   :session_token,
                   :username,
+                  :admin,
                   # non-persisted
                   :password,
                   :password_confirmation
@@ -43,6 +44,8 @@ class User < ActiveRecord::Base
   # Password must be at least 6 characters long
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  validates :admin, inclusion: { in: [true, false] }
+
 
 
   # Class methods
@@ -73,6 +76,12 @@ class User < ActiveRecord::Base
   def reset_session_token!
     self.session_token = self.class.generate_session_token
     self.save!
+  end
+
+  # #admin?
+  # Returns whether user is admin
+  def admin?
+    self.admin
   end
 
 

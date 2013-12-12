@@ -1,4 +1,14 @@
 class UsersController < ApplicationController
+  before_filter :require_sign_in, except: [:new, :create]
+  before_filter :require_admin, only: [:index, :destroy]
+
+  before_filter only: [:edit, :update, :change_password] do |c|
+    c.require_correct_user(User.find(params[:id]), { allow_admin: false })
+  end
+
+  before_filter only: [:show] do |c|
+    c.require_correct_user(User.find(params[:id]), { allow_admin: true })
+  end
 
   def index
     @users = User.all
