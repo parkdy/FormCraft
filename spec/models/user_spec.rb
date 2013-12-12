@@ -15,79 +15,47 @@ describe User do
              password_confirmation: "password")
   end
 
+  before { other_user.save! }
+
 
 
   # Attributes
 
-  it { should respond_to :username }
-  it { should respond_to :email }
-  it { should respond_to :password_digest }
-  it { should respond_to :session_token }
+  it { should allow_mass_assignment_of :username }
+  it { should allow_mass_assignment_of :email }
+  it { should allow_mass_assignment_of :password }
+  it { should allow_mass_assignment_of :password_confirmation }
 
-  # Methods
-
-  # Authentication methods
-  it { should respond_to :password= }
-  it { should respond_to :password_confirmation= }
-  it { should respond_to :authenticate }
-
-  it { should respond_to :reset_session_token! }
+  it { should_not allow_mass_assignment_of :password_digest }
+  it { should_not allow_mass_assignment_of :session_token }
+  it { should_not allow_mass_assignment_of :admin }
+  it { should_not allow_mass_assignment_of :activated }
+  it { should_not allow_mass_assignment_of :activation_token }
+  it { should_not allow_mass_assignment_of :recovery_token }
 
 
 
   # Validations
 
-  describe "with blank attributes" do
-    subject(:blank_user) { User.new }
-    it { should_not be_valid }
-  end
+  it { should validate_presence_of :username }
+  it { should validate_presence_of :email }
+  it { should validate_presence_of :password_digest }
+  # it { should validate_presence_of :session_token }
+  # User#ensure_session_token breaks this test
 
-  describe "with a blank username" do
-    before { user.username = " " }
-    it { should_not be_valid }
-  end
+  it { should allow_value(true, false).for(:admin) }
+  it { should allow_value(true, false).for(:activated) }
+  # ensure_inclusion_of can't handle booleans
 
-  describe "with a duplicate username" do
-    before do
-      other_user.username = "user"
-      other_user.save!
-    end
+  it { should validate_uniqueness_of :username }
+  it { should validate_uniqueness_of :email }
+  it { should validate_uniqueness_of :session_token }
 
-    it { should_not be_valid }
-  end
 
-  describe "with a blank email" do
-    before { user.email = " " }
-    it { should_not be_valid }
-  end
 
-  describe "with a duplicate email" do
-    before do
-      other_user.email = "user@example.com"
-      other_user.save!
-    end
+  # Authentication
 
-    it { should_not be_valid }
-  end
-
-  describe "with a blank password_digest" do
-    before { user.password_digest = " " }
-    it { should_not be_valid }
-  end
-
-  describe "with a blank session_token" do
-    before { user.session_token = " " }
-    it { should_not be_valid }
-  end
-
-  describe "with a duplicate session token" do
-    before do
-      other_user.reset_session_token!
-      user.session_token = other_user.session_token
-    end
-
-    it { should_not be_valid }
-  end
+  it { should have_secure_password }
 
   describe "with a password shorter than 6 characters" do
     before { user.password = "abcde" }
@@ -101,18 +69,16 @@ describe User do
 
 
 
-  describe "with valid attributes" do
-    # Valid attributes set in subject method
-    it { should be_valid }
+  it { should be_valid }
 
-    describe "when saved" do
-      before { user.save! }
+  describe "when saved" do
+    before { user.save! }
 
-      it "should not persist passwords" do
-        # Fetch user from database
-        fetched_user = User.find(user)
-        expect(fetched_user.password).to be_nil
-      end
+    it "should not persist passwords" do
+      # Fetch user from database
+      fetched_user = User.find(user)
+      expect(fetched_user.password).to be_nil
     end
   end
+
 end

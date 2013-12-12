@@ -1,15 +1,14 @@
 class User < ActiveRecord::Base
   attr_accessible :email,
-                  :password_digest,
-                  :session_token,
                   :username,
-                  :admin,
-                  :activated,
-                  :activation_token,
-                  :recovery_token,
-                  # non-persisted
-                  :password,
-                  :password_confirmation
+                  # :password_digest,
+                  # :session_token,
+                  # :admin,
+                  # :activated,
+                  # :activation_token,
+                  # :recovery_token,
+                  :password, # non-persisted
+                  :password_confirmation # non-persisted
 
 
 

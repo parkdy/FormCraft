@@ -52,3 +52,7 @@ group :development do
   # Test email sending
   gem "letter_opener"
 end
+
+group :test do
+  gem "shoulda-matchers"
+end
