@@ -9,6 +9,7 @@
 
 
 # Create users
+
 admin = User.create!(
   username: "admin",
   email: "admin@example.com",
@@ -39,3 +40,13 @@ david = User.create!(
   password: "password",
   password_confirmation: "password"
 )
+
+
+
+# Create Forms
+
+form1 = user.forms.build(title: "Form 1",
+                         description: "My first form!")
+form2 = user.forms.build(title: "Form 2",
+                         description: "Another form!")
+user.save!

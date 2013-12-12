@@ -51,6 +51,18 @@ class User < ActiveRecord::Base
 
 
 
+  # Associations
+
+  has_many(
+    :forms,
+    class_name: "Form",
+    foreign_key: :author_id,
+    primary_key: :id,
+    inverse_of: :author
+  )
+
+
+
   # Class methods
 
   # ::generate_session_token
