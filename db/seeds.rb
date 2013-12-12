@@ -14,7 +14,8 @@ admin = User.create!(
   email: "admin@example.com",
   password: "password",
   password_confirmation: "password",
-  admin: true
+  admin: true,
+  activated: true
 )
 
 guest = User.create!(
@@ -27,6 +28,14 @@ guest = User.create!(
 user = User.create!(
   username: "user",
   email: "user@example.com",
+  password: "password",
+  password_confirmation: "password",
+  activated: true
+)
+
+david = User.create!(
+  username: "david",
+  email: "david@example.com",
   password: "password",
   password_confirmation: "password"
 )
