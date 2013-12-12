@@ -1,0 +1,35 @@
+/* Reset styles */
+
+//html, body, div, span, header, footer, nav, h1, h2, h3, ul, li, p, a, img,
+//table, th, tr, td, button, form, label, input, textarea, select, option {
+//  margin: 0;
+//  padding: 0;
+//  border: 0;
+//}
+
+//ul, li {
+//  list-style: none;
+//}
+
+
+
+/* Clearfix */
+
+.group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+
+
+/* Tables */
+
+table {
+  border: 1px solid black;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+}

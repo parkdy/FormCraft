@@ -1,0 +1,21 @@
+/* Header */
+
+//header, nav, h1, a, form, input, ul, li {
+//
+//}
+
+header {
+  background: lightgray;
+
+  h1 {
+    float: left;
+  }
+
+  nav {
+    float: right;
+
+    li {
+      list-style: none;
+    }
+  }
+}
