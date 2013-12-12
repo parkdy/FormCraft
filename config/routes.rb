@@ -5,10 +5,12 @@ FormBuilder::Application.routes.draw do
       get 'change_password'
       get 'send_activation_email'
       get 'activate'
+      get 'reset_password'
     end
 
     collection do
       get 'forgot_password'
+      post 'send_recovery_email'
     end
   end
 

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :require_sign_in, except: [:new, :create, :activate]
+  before_filter :require_sign_in, only: [:index, :show, :edit, :update, :destroy,
+                                         :change_password, :send_activation_email]
+  before_filter :require_sign_out, only: [:new, :create, :forgot_password, :send_recovery_email]
+
   before_filter :require_admin, only: [:index, :destroy]
 
   before_filter only: [:edit, :update, :change_password] do |c|
@@ -40,11 +43,11 @@ class UsersController < ApplicationController
   end
 
   # #update
-  # Handles PUT requests from both #edit and #change_password
+  # Handles PUT requests from #edit, #change_password, and #reset password
   def update
     @user = User.find(params[:id])
 
-    if params[:user][:password] && !@user.authenticate(params[:current_password])
+    if params[:user][:password] && params[:current_password] && !@user.authenticate(params[:current_password])
       flash.now[:fail] = "Current password incorrect"
       render :change_password
     elsif @user.update_attributes(params[:user])
@@ -53,8 +56,14 @@ class UsersController < ApplicationController
     else
       flash.now[:errors] = @user.errors.full_messages
 
-      # Render change_password or edit template
-      render (params[:user][:password] ? :change_password : :edit)
+      # Render appropriate template
+      if params[:user][:password] && params[:current_user]
+        render :change_password
+      elsif params[:user][:password]
+        render :reset_password
+      else
+        render :edit
+      end
     end
   end
 
@@ -79,7 +88,7 @@ class UsersController < ApplicationController
 
     if @user.activated?
       flash[:fail] = "Account already activated"
-    
+
     else
       begin
         @user.reset_activation_token!
@@ -118,11 +127,61 @@ class UsersController < ApplicationController
 
     else
       flash[:fail] = "Invalid activation token"
-      @user.reset_activation_token!
       redirect_to root_url
     end
 
-    
+  end
+
+  # #forgot_password
+  # Show form to begin password recovery process
+  def forgot_password
+    @user = User.new
+  end
+
+  # #send_recovery_email
+  # Send recovery email
+  def send_recovery_email
+    @user = User.find_by_email(params[:user][:email])
+
+    if @user
+      begin
+        @user.reset_recovery_token!
+        UserMailer.recovery_email(@user).deliver!
+
+        flash[:success] = "Recovery email sent"
+      rescue StandardError => e
+        flash[:errors] = ["Unable to send recovery email", e.message]
+      end
+
+      redirect_to signin_url
+    else
+      flash.now[:fail] = "User not found"
+      render :forgot_password
+    end
+  end
+
+  def reset_password
+    @user = User.find(params[:id])
+
+    if @user.nil?
+      flash[:error] = "User not found"
+      redirect_to root_url
+
+    elsif @user.recovery_token && params[:recovery_token] == @user.recovery_token
+      @user.recovery_token = nil
+
+      if @user.save
+        sign_in!(@user)
+        render :reset_password
+      else
+        flash[:errors] = @user.errors.full_messages
+        redirect_to root_url
+      end
+
+    else
+      flash[:fail] = "Invalid recovery token"
+      redirect_to root_url
+    end
   end
 
 end

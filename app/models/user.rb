@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
                   :admin,
                   :activated,
                   :activation_token,
+                  :recovery_token,
                   # non-persisted
                   :password,
                   :password_confirmation
@@ -64,6 +65,12 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64(16)
   end
 
+  # ::generate_recovery_token
+  # Returns randomly generated recovery token
+  def self.generate_recovery_token
+    SecureRandom.urlsafe_base64(16)
+  end
+
   # ::authenticate(username, password)
   # Returns user if username and password authenticated,
   # otherwise return false
@@ -90,6 +97,13 @@ class User < ActiveRecord::Base
   # Set new activation token and save! user
   def reset_activation_token!
     self.activation_token = self.class.generate_activation_token
+    self.save!
+  end
+
+  # #reset_recovery_token!
+  # Set new recovery token and save! user
+  def reset_recovery_token!
+    self.recovery_token = self.class.generate_recovery_token
     self.save!
   end
 

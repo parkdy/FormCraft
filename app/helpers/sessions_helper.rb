@@ -27,6 +27,13 @@ module SessionsHelper
     end
   end
 
+  def require_sign_out
+    if signed_in?
+      flash[:fail] = "You must sign out to do that"
+      redirect_to root_url
+    end
+  end
+
   def require_admin
     unless current_user.admin?
       flash[:fail] = "You do not have administrative privileges"
@@ -46,7 +53,7 @@ module SessionsHelper
 
   def require_activation
     unless current_user.activated?
-      notice = ("You must activate your account! Please check your email for activation instructions or " + 
+      notice = ("You must activate your account! Please check your email for activation instructions or " +
                 "<a href='"+send_activation_email_user_url(current_user)+"'>resend activation email</a>.")
 
       flash[:notice] = notice.html_safe
