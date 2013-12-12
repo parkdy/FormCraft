@@ -1,0 +1,9 @@
+<table id="forms_table">
+  <th>Title</th>
+
+  <% forms.each do |form| %>
+    <tr>
+      <td><%= link_to form.title, form_url(form) %></td>
+    </tr>
+  <% end %>
+</table>

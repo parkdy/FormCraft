@@ -16,6 +16,12 @@ FormBuilder::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
+  resources :forms, only: [:show, :create, :update, :destroy]
+
+  namespace :api do
+    resources :forms, only: [:index, :show, :create, :update, :destroy]
+  end
+
   get 'signup' => 'users#new'
   get 'signin' => 'sessions#new'
 
