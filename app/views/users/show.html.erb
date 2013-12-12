@@ -16,7 +16,7 @@
 <h3>Forms (<%= @user.forms.count %>)</h3>
 
 <p>
-  <%= link_to "Create New Form", "#" %>
+  <%= link_to "Create New Form", new_form_url %>
 </p>
 
 <%= render "shared/forms_table", forms: @user.forms %>

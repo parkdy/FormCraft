@@ -15,8 +15,8 @@
 </form>
 
 <p>
-  <%= link_to "Preview", "#" %>
-  <%= link_to "Edit", "#" %>
+  <%= link_to "Preview", preview_form_url(@form) %>
+  <%= link_to "Edit", edit_form_url(@form) %>
   <%= button_to "Delete", form_url(@form), method: :delete,
               data: { confirm: "Are you sure you want to delete this form?" } %>
 </p>

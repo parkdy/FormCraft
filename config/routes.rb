@@ -16,7 +16,11 @@ FormBuilder::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  resources :forms, only: [:show, :create, :update, :destroy]
+  resources :forms, only: [:show, :create, :update, :destroy, :new, :edit] do
+    member do
+      get 'preview'
+    end
+  end
 
   namespace :api do
     resources :forms, only: [:index, :show, :create, :update, :destroy]
@@ -24,6 +28,8 @@ FormBuilder::Application.routes.draw do
 
   get 'signup' => 'users#new'
   get 'signin' => 'sessions#new'
+
+  get 'form_editor' => 'form_editors#index'
 
   root to: 'static_pages#index'
 

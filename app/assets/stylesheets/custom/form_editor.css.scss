@@ -1,0 +1,22 @@
+#form_editor {
+  border: 2px solid black;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+
+#editor_window {
+  background: lightgray;
+  width: 500px;
+  height: 500px;
+  float: left;
+  position: relative;
+}
+
+#preview_window {
+  background: white;
+  width: 500px;
+  height: 500px;
+  float: left;
+  position: relative;
+}
