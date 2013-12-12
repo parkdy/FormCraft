@@ -6,6 +6,7 @@
   <th>Email</th>
   <th>Registration Date</th>
   <th>Admin</th>
+  <th>Activated</th>
 
   <% @users.each do |user| %>
     <tr>
@@ -17,7 +18,8 @@
       <td><%= link_to user.username, user_url(user) %></td>
       <td><%= user.email %></td>
       <td><%= user.created_at %></td>
-      <td><%= (user.admin? ? "Yes" : "No") %>
+      <td><%= (user.admin? ? "Yes" : "No") %></td>
+      <td><%= (user.activated? ? "Yes" : "No") %></td>
     </tr>
   <% end %>
 </table>

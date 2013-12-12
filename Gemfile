@@ -43,8 +43,12 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-# Debugging Rails
 group :development do
+
+  # Debugging Rails
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # Test email sending
+  gem "letter_opener"
 end

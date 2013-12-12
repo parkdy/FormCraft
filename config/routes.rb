@@ -3,6 +3,8 @@ FormBuilder::Application.routes.draw do
   resources :users do
     member do
       get 'change_password'
+      get 'send_activation_email'
+      get 'activate'
     end
 
     collection do

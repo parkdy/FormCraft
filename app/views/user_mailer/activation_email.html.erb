@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to FormBuilder, <%= @user.username%>!</h1>
+    <p>
+      You're almost done with the sign-up process! We just need to make sure you aren't a robot.
+    </p>
+    <p>To activate your account, please follow this link:</p>
+    <p><%= link_to @activation_url, @activation_url %></p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

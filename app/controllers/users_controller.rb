@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  before_filter :require_sign_in, except: [:new, :create]
+  before_filter :require_sign_in, except: [:new, :create, :activate]
   before_filter :require_admin, only: [:index, :destroy]
 
   before_filter only: [:edit, :update, :change_password] do |c|
     c.require_correct_user(User.find(params[:id]), { allow_admin: false })
   end
 
-  before_filter only: [:show] do |c|
+  before_filter only: [:show, :send_activation_email] do |c|
     c.require_correct_user(User.find(params[:id]), { allow_admin: true })
   end
 
@@ -70,6 +70,59 @@ class UsersController < ApplicationController
   # Show form to change password
   def change_password
     @user = User.find(params[:id])
+  end
+
+  # #send_activation_email
+  # Send activation email
+  def send_activation_email
+    @user = User.find(params[:id])
+
+    if @user.activated?
+      flash[:fail] = "Account already activated"
+    
+    else
+      begin
+        @user.reset_activation_token!
+        UserMailer.activation_email(@user).deliver!
+
+        flash[:success] = "Activation email sent"
+      rescue StandardError => e
+        flash[:errors] = ["Unable to send activation email", e.message]
+      end
+    end
+
+    redirect_to user_url(@user)
+  end
+
+  # #activate
+  # Activate user by checking activation token
+  def activate
+    @user = User.find(params[:id])
+
+    if @user.activated?
+      flash[:fail] = "Account already activated"
+      redirect_to root_url
+
+    elsif @user.activation_token && params[:activation_token] == @user.activation_token
+      @user.activated = true
+      @user.activation_token = nil
+
+      if @user.save
+        flash[:success] = "Activated account"
+        sign_in!(@user)
+        redirect_to user_url(@user)
+      else
+        flash[:errors] = ["Unable to activate account"] + @user.errors.full_messages
+        redirect_to root_url
+      end
+
+    else
+      flash[:fail] = "Invalid activation token"
+      @user.reset_activation_token!
+      redirect_to root_url
+    end
+
+    
   end
 
 end
