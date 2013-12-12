@@ -1,0 +1,22 @@
+<h2><%= @form.title %></h2>
+
+<form class="disabled_form">
+  <p>
+    <label>URL:<br>
+      <input type="text" value="<%= form_url(@form) %>" disabled>
+    </label>
+  </p>
+
+  <p>
+    <label>Description:<br>
+      <textarea disabled><%= @form.description %></textarea>
+    </label>
+  </p>
+</form>
+
+<p>
+  <%= link_to "Preview", "#" %>
+  <%= link_to "Edit", "#" %>
+  <%= button_to "Delete", form_url(@form), method: :delete,
+              data: { confirm: "Are you sure you want to delete this form?" } %>
+</p>

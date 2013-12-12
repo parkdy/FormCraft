@@ -97,37 +97,38 @@ class User < ActiveRecord::Base
 
   # Instance methods
 
-  # #reset_session_token!
-  # Set new session token and save! user
   def reset_session_token!
     self.session_token = self.class.generate_session_token
     self.save!
   end
 
-  # #reset_activation_token!
-  # Set new activation token and save! user
   def reset_activation_token!
     self.activation_token = self.class.generate_activation_token
     self.save!
   end
 
-  # #reset_recovery_token!
-  # Set new recovery token and save! user
   def reset_recovery_token!
     self.recovery_token = self.class.generate_recovery_token
     self.save!
   end
 
-  # #admin?
-  # Returns whether user is admin
   def admin?
     self.admin
   end
 
-  # #admin?
-  # Returns whether user is activated
   def activated?
     self.activated
+  end
+
+  def admin!
+    self.admin = true
+    self.save!
+  end
+
+  def activate!
+    self.activated = true
+    self.activation_token = nil
+    self.save!
   end
 
 

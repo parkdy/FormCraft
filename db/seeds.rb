@@ -14,10 +14,11 @@ admin = User.create!(
   username: "admin",
   email: "admin@example.com",
   password: "password",
-  password_confirmation: "password",
-  admin: true,
-  activated: true
+  password_confirmation: "password"
 )
+
+admin.admin!
+admin.activate!
 
 guest = User.create!(
   username: "guest",
@@ -30,9 +31,10 @@ user = User.create!(
   username: "user",
   email: "user@example.com",
   password: "password",
-  password_confirmation: "password",
-  activated: true
+  password_confirmation: "password"
 )
+
+user.activate!
 
 david = User.create!(
   username: "david",
@@ -49,4 +51,6 @@ form1 = user.forms.build(title: "Form 1",
                          description: "My first form!")
 form2 = user.forms.build(title: "Form 2",
                          description: "Another form!")
+form2 = user.forms.build(title: "Form 3",
+                         description: "One\nTwo\nThree")
 user.save!

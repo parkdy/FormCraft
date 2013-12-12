@@ -11,7 +11,7 @@ class FormsController < ApplicationController
       redirect_to form_url(@form)
     else
       flash[:errors] = @form.errors.full_messages
-      redirect_to user_forms_url(current_user)
+      redirect_to user_url(current_user)
     end
   end
 
@@ -32,6 +32,6 @@ class FormsController < ApplicationController
     @form.destroy
 
     flash[:success] = "Deleted form"
-    redirect_to user_forms_url(current_user)
+    redirect_to user_url(current_user)
   end
 end
