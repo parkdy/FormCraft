@@ -1,12 +1,76 @@
 <h2>Form Editor</h2>
-<h3><%= @mode.capitalize %> Mode</h3>
+<h3><%= @mode.capitalize %> Form</h3>
+
+<%= button_to "Save", "#", method: :get %>
 
 <div id="form_editor" class="group">
   <div id="editor_window">
-    <p></p>
+    <nav id="editor_tabs" class="group">
+		<%= link_to "Add Field", "#", class: "editor_tab" %>
+		<%= link_to "Field Settings", "#", class: "editor_tab" %>
+		<%= link_to "Form Settings", "#", class: "editor_tab" %>
+    </nav>
+
+    <div id="editor_view">
+    	<div class="field_type group">
+	    	<span class="field_type_field">
+	    		<label>Text Box:<br>
+	    			<input type="text">
+	    		</label>
+		    </span>
+		    <nav class="field_type_nav">
+		    	<%= button_to "+", "#", method: :get, class: "field_type_btn" %>
+		    	<%= button_to "?", "#", method: :get, class: "field_type_btn" %>
+		    </nav>
+		</div>
+
+		<div class="field_type group">
+	    	<span class="field_type_field">
+	    		<label>Radio Buttons:<br>
+	    			<input type="radio" name="radio_group" checked>Option1<br>
+	    			<input type="radio" name="radio_group">Option2
+	    		</label>
+		    </span>
+		    <nav class="field_type_nav">
+		    	<%= button_to "+", "#", method: :get, class: "field_type_btn" %>
+		    	<%= button_to "?", "#", method: :get, class: "field_type_btn" %>
+		    </nav>
+		</div>
+    </div>
   </div>
 
   <div id="preview_window">
-    <h4><%= @form.title %></h4>
+  	<div>
+	    <h2><%= @form.title %></h2>
+	</div>
+
+    <form>
+    	<div class="field_slot">
+    		<%= button_to "Insert", "#", method: :get, class: "insert_field_btn" %>
+    	</div>
+
+    	<div class="preview_field group">
+    		<span class="preview_field_field">
+		    	<label>Email:<br>
+		    		<input type="text">
+		    	</label>
+		    </span>
+
+	    	<nav class="preview_field_nav group">
+		    	<%= button_to "Delete", "#", method: :get, class: "preview_field_btn" %>
+		    	<%= button_to "Edit", "#", method: :get, class: "preview_field_btn" %>
+		    </nav>
+	    </div>
+
+	    <div class="field_slot">
+    		<%= button_to "Insert", "#", method: :get, class: "insert_field_btn" %>
+    	</div>
+
+	    <div>
+		    <%= button_to "Insert", "#", method: :get, class: "insert_field_btn" %>
+		</div>
+
+	    <input type="submit" id="submit_btn">
+    </form>
   </div>
 </div>

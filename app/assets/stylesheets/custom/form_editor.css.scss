@@ -1,22 +1,104 @@
 #form_editor {
   border: 2px solid black;
-  width: 1000px;
-  height: 500px;
+  width: 800px;
+  height: 800px;
   position: relative;
 }
 
 #editor_window {
   background: lightgray;
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 800px;
   float: left;
   position: relative;
 }
 
 #preview_window {
   background: white;
-  width: 500px;
-  height: 500px;
+  width: 478px;
+  height: 780px;
+  margin: 10px;
   float: left;
   position: relative;
+}
+
+#editor_tabs {
+  background: white;
+}
+
+.editor_tab {
+  float: left;
+  width: 98px;
+  text-align: center;
+  padding: 10px 0;
+
+  border-style: solid;
+  border-color: gray;
+  border-width: 1px;
+  border-radius: 10px 10px 0 0;
+}
+
+#editor_view {
+  padding: 10px;
+}
+
+.field_type {
+  margin-bottom: 10px;
+}
+
+.field_type_field {
+  float: left;
+  padding: 5px;
+  border: 1px dashed gray;
+}
+
+.field_type_field:hover {
+  border-style: solid;
+}
+
+.field_type_btn {
+  float: right;
+}
+
+.preview_field {
+  margin-bottom: 10px;
+  border: 1px dashed lightgray;
+}
+
+.preview_field:hover {
+  border-color: black;
+}
+
+.field_slot {
+  border: 1px dashed lightgray;
+  min-height: 5px;
+  margin-bottom: 10px;
+}
+
+.insert_field_btn {
+  display: none;
+}
+
+.field_slot:hover {
+  border-color: black;
+}
+
+.field_slot:hover .insert_field_btn {
+  display: block;
+}
+
+.preview_field_field {
+  float: left;
+}
+
+.preview_field_btn {
+  float: right;
+}
+
+.preview_field_nav {
+  display: none;
+}
+
+.preview_field:hover .preview_field_nav {
+  display: block;
 }
