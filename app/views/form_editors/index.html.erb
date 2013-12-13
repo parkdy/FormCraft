@@ -5,7 +5,7 @@
 
 <div id="form_editor" class="group">
   <div id="editor_window">
-    <%= render "form_editors/editor/tabs" %>
+    <%= render "form_editors/editor/tabs", params: @params %>
 
     <div id="editor_view">
       <%= render "form_editors/editor/" + @editor_tab + "_view" %>

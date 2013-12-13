@@ -1,5 +1,11 @@
 <nav id="editor_tabs" class="group">
-  <%= link_to "Add Field", "#", class: "editor_tab" %>
-  <%= link_to "Field Settings", "#", class: "editor_tab" %>
-  <%= link_to "Form Settings", "#", class: "editor_tab" %>
+  <% tabs = %w{add_field field_settings form_settings} %>
+
+  <% tabs.each do |tab| %>
+
+    <%= link_to tab.split('_').map(&:capitalize).join(" "),
+          form_editor_url(params.merge(editor_tab: tab)),
+          class: "editor_tab" %>
+
+  <% end %>
 </nav>
