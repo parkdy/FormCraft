@@ -35,6 +35,12 @@ describe User do
 
 
 
+  # Associations
+
+  it { should have_many :forms }
+
+
+
   # Validations
 
   it { should validate_presence_of :username }

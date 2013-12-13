@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212160227) do
+ActiveRecord::Schema.define(:version => 20131213140329) do
+
+  create_table "fields", :force => true do |t|
+    t.string   "type",       :null => false
+    t.integer  "form_id",    :null => false
+    t.string   "label"
+    t.string   "default"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "fields", ["form_id"], :name => "index_fields_on_form_id"
 
   create_table "forms", :force => true do |t|
     t.string   "title",       :null => false

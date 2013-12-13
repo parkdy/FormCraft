@@ -25,6 +25,7 @@ describe Form do
   # Associations
 
   it { should belong_to :author }
+  it { should have_many :fields }
 
 
 
