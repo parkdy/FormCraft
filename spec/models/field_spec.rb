@@ -14,16 +14,20 @@ describe Field do
   end
 
   let(:other_field) do
-    form.fields.build(type: "text",
+    form.fields.build(field_type: "text",
                       label: "Other Label:",
                       default: "Default Value",
                       name: "other_name")
   end
 
-  before { user.save! }
+  before do
+    form.fields << other_field
+    user.forms << form
+    user.save!
+  end
 
   subject(:field) do
-    form.fields.build(type: "text",
+    form.fields.build(field_type: "text",
                       label: "Name:",
                       default: "Default Value",
                       name: "name")
@@ -31,7 +35,7 @@ describe Field do
 
   # Attributes
 
-  it { should allow_mass_assignment_of :type }
+  it { should allow_mass_assignment_of :field_type }
   it { should allow_mass_assignment_of :form_id }
   it { should allow_mass_assignment_of :label }
   it { should allow_mass_assignment_of :default }
@@ -46,11 +50,11 @@ describe Field do
 
   # Validations
 
-  it { should validate_presence_of :type }
+  it { should validate_presence_of :field_type }
   it { should validate_presence_of :form }
   it { should validate_presence_of :name }
 
-  it { should ensure_inclusion_of(:type).in_array(Field.types) }
+  it { should ensure_inclusion_of(:field_type).in_array(Field.types) }
 
   describe "with duplicate field names in a form" do
     before do
