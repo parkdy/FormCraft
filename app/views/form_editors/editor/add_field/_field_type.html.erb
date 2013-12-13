@@ -1,0 +1,10 @@
+<div class="field_type group">
+	<span class="field_type_field">
+    <%= render "fields/types/"+field.type, field: field %>
+  </span>
+
+  <nav class="field_type_nav">
+  	<%= button_to "+", "#", method: :get, class: "field_type_btn" %>
+  	<%= button_to "?", "#", method: :get, class: "field_type_btn" %>
+  </nav>
+</div>

@@ -1,0 +1,10 @@
+<div class="preview_field group">
+	<span class="preview_field_field">
+  	<%= render "fields/types/" + field.type, field: field %>
+  </span>
+
+  <nav class="preview_field_nav group">
+  	<%= button_to "Delete", "#", method: :get, class: "preview_field_btn" %>
+  	<%= button_to "Edit", "#", method: :get, class: "preview_field_btn" %>
+  </nav>
+</div>

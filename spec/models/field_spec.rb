@@ -13,12 +13,20 @@ describe Field do
                      description: "A form for testing")
   end
 
+  let(:other_field) do
+    form.fields.build(type: "text",
+                      label: "Other Label:",
+                      default: "Default Value",
+                      name: "other_name")
+  end
+
   before { user.save! }
 
   subject(:field) do
     form.fields.build(type: "text",
                       label: "Name:",
-                      default: "Default Value")
+                      default: "Default Value",
+                      name: "name")
   end
 
   # Attributes
@@ -27,6 +35,7 @@ describe Field do
   it { should allow_mass_assignment_of :form_id }
   it { should allow_mass_assignment_of :label }
   it { should allow_mass_assignment_of :default }
+  it { should allow_mass_assignment_of :name }
 
 
   # Associations
@@ -39,8 +48,18 @@ describe Field do
 
   it { should validate_presence_of :type }
   it { should validate_presence_of :form }
+  it { should validate_presence_of :name }
 
   it { should ensure_inclusion_of(:type).in_array(Field.types) }
+
+  describe "with duplicate field names in a form" do
+    before do
+      field.name = other_field.name
+
+    end
+
+    it { should_not be_valid }
+  end
 
 
 

@@ -5,70 +5,25 @@
 
 <div id="form_editor" class="group">
   <div id="editor_window">
-    <nav id="editor_tabs" class="group">
-		<%= link_to "Add Field", "#", class: "editor_tab" %>
-		<%= link_to "Field Settings", "#", class: "editor_tab" %>
-		<%= link_to "Form Settings", "#", class: "editor_tab" %>
-    </nav>
+    <%= render "form_editors/editor/tabs" %>
 
     <div id="editor_view">
-    	<div class="field_type group">
-	    	<span class="field_type_field">
-	    		<label>Text Box:<br>
-	    			<input type="text">
-	    		</label>
-		    </span>
-		    <nav class="field_type_nav">
-		    	<%= button_to "+", "#", method: :get, class: "field_type_btn" %>
-		    	<%= button_to "?", "#", method: :get, class: "field_type_btn" %>
-		    </nav>
-		</div>
-
-		<div class="field_type group">
-	    	<span class="field_type_field">
-	    		<label>Radio Buttons:<br>
-	    			<input type="radio" name="radio_group" checked>Option1<br>
-	    			<input type="radio" name="radio_group">Option2
-	    		</label>
-		    </span>
-		    <nav class="field_type_nav">
-		    	<%= button_to "+", "#", method: :get, class: "field_type_btn" %>
-		    	<%= button_to "?", "#", method: :get, class: "field_type_btn" %>
-		    </nav>
-		</div>
+      <%= render "form_editors/editor/" + @editor_tab + "_view" %>
     </div>
   </div>
 
   <div id="preview_window">
   	<div>
 	    <h2><%= @form.title %></h2>
-	</div>
+  	</div>
 
     <form>
-    	<div class="field_slot">
-    		<%= button_to "Insert", "#", method: :get, class: "insert_field_btn" %>
-    	</div>
+    	<%= render "form_editors/preview/field_slot" %>
 
-    	<div class="preview_field group">
-    		<span class="preview_field_field">
-		    	<label>Email:<br>
-		    		<input type="text">
-		    	</label>
-		    </span>
+    	<%= render "form_editors/preview/preview_field",
+            field: Field.new(type: "text", label: "Email:") %>
 
-	    	<nav class="preview_field_nav group">
-		    	<%= button_to "Delete", "#", method: :get, class: "preview_field_btn" %>
-		    	<%= button_to "Edit", "#", method: :get, class: "preview_field_btn" %>
-		    </nav>
-	    </div>
-
-	    <div class="field_slot">
-    		<%= button_to "Insert", "#", method: :get, class: "insert_field_btn" %>
-    	</div>
-
-	    <div>
-		    <%= button_to "Insert", "#", method: :get, class: "insert_field_btn" %>
-		</div>
+	    <%= render "form_editors/preview/field_slot" %>
 
 	    <input type="submit" id="submit_btn">
     </form>
