@@ -57,6 +57,10 @@ group :development do
   gem "letter_opener"
 end
 
+# Test validations and associations in RSpec
 group :test do
   gem "shoulda-matchers"
 end
+
+# Backbone.js for client side MVC
+gem 'backbone-on-rails'
