@@ -1,7 +1,7 @@
 class Field < ActiveRecord::Base
   TYPES = %w{text textarea radio checkbox select}
 
-  attr_accessible :form_id, :label, :field_type, :default, :name
+  attr_accessible :form_id, :label, :field_type, :default, :name, :pos
 
 
 
@@ -9,7 +9,10 @@ class Field < ActiveRecord::Base
 
   validates :field_type, :form, :name, presence: true
   validates :field_type, inclusion: { in: TYPES }
+  validates :pos, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   validate :unique_form_field_name
+  validate :unique_form_field_pos
 
 
 
@@ -34,9 +37,12 @@ class Field < ActiveRecord::Base
     def unique_form_field_name
       return if self.name.blank?
       duplicate = Field.find_by_form_id_and_name(self.form_id, self.name)
-      if duplicate
-        errors.add(:name, "Field name must be unique for form")
-      end
+      errors.add(:name, "must be unique for form") if duplicate
+    end
+
+    def unique_form_field_pos
+      duplicate = Field.find_by_form_id_and_pos(self.form_id, self.pos)
+      errors.add(:pos, "must be unique for form") if duplicate
     end
 
 end

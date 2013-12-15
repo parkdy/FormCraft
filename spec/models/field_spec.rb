@@ -17,7 +17,8 @@ describe Field do
     form.fields.build(field_type: "text",
                       label: "Other Label:",
                       default: "Default Value",
-                      name: "other_name")
+                      name: "other_name",
+                      pos: 0)
   end
 
   before do
@@ -30,7 +31,8 @@ describe Field do
     form.fields.build(field_type: "text",
                       label: "Name:",
                       default: "Default Value",
-                      name: "name")
+                      name: "name",
+                      pos: 1)
   end
 
   # Attributes
@@ -40,6 +42,7 @@ describe Field do
   it { should allow_mass_assignment_of :label }
   it { should allow_mass_assignment_of :default }
   it { should allow_mass_assignment_of :name }
+  it { should allow_mass_assignment_of :pos }
 
 
   # Associations
@@ -56,12 +59,16 @@ describe Field do
 
   it { should ensure_inclusion_of(:field_type).in_array(Field.types) }
 
+  it { should validate_numericality_of(:pos).only_integer }
+  it { should validate_numericality_of(:pos).is_greater_than_or_equal_to(0) }
+
   describe "with duplicate field names in a form" do
-    before do
-      field.name = other_field.name
+    before { field.name = other_field.name }
+    it { should_not be_valid }
+  end
 
-    end
-
+  describe "with duplicate field positions in a form" do
+    before { field.pos = other_field.pos }
     it { should_not be_valid }
   end
 
