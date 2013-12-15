@@ -8,44 +8,48 @@
 
 
 
-# Create users
+unless Rails.env.production?
 
-admin = FactoryGirl.create(:user, username: "admin",
-                                 email: "admin@example.com")
-admin.admin!
-admin.activate!
+	# Create users
 
-user = FactoryGirl.create(:user, username: "user",
-                                 email: "user@example.com")
-user.activate!
+	admin = FactoryGirl.create(:user, username: "admin",
+	                                 email: "admin@example.com")
+	admin.admin!
+	admin.activate!
 
-david = FactoryGirl.create(:user, username: "david",
-                                  email: "david@example.com")
+	user = FactoryGirl.create(:user, username: "user",
+	                                 email: "user@example.com")
+	user.activate!
 
-5.times do
-  FactoryGirl.create(:random_user)
+	david = FactoryGirl.create(:user, username: "david",
+	                                  email: "david@example.com")
+
+	5.times do
+	  FactoryGirl.create(:random_user)
+	end
+
+
+
+	# Create Forms
+
+	forms = []
+	3.times { forms << FactoryGirl.build(:random_form) }
+	user.forms = forms
+	user.save!
+
+	form1 = forms.first
+
+	# Create Fields
+
+	field1 = FactoryGirl.build(:text_field, name: "name", label: "Name:")
+	field2 = FactoryGirl.build(:text_field, name: "email", label: "Email:")
+	field3 = FactoryGirl.build(:text_field, name: "subject", label: "Subject:")
+	field4 = FactoryGirl.build(:textarea_field, name: "body", label: "Body:", default: "Enter text here...")
+
+	form1.add_field!(field1)
+	form1.add_field!(field3)
+	form1.insert_field!(field2, 1)
+	form1.insert_field!(field4, 1)
+	form1.move_field!(1, 3)
+	
 end
-
-
-
-# Create Forms
-
-forms = []
-3.times { forms << FactoryGirl.build(:random_form) }
-user.forms = forms
-user.save!
-
-form1 = forms.first
-
-# Create Fields
-
-field1 = FactoryGirl.build(:text_field, name: "name", label: "Name:")
-field2 = FactoryGirl.build(:text_field, name: "email", label: "Email:")
-field3 = FactoryGirl.build(:text_field, name: "subject", label: "Subject:")
-field4 = FactoryGirl.build(:textarea_field, name: "body", label: "Body:", default: "Enter text here...")
-
-form1.add_field!(field1)
-form1.add_field!(field3)
-form1.insert_field!(field2, 1)
-form1.insert_field!(field4, 1)
-form1.move_field!(1, 3)

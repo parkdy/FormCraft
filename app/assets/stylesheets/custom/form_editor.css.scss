@@ -60,19 +60,12 @@
   float: right;
 }
 
-.preview_field {
-  margin-bottom: 10px;
-  border: 1px dashed lightgray;
-}
-
 .preview_field:hover {
-  border-color: black;
+  border: 1px dashed black;
 }
 
 .field_slot {
-  border: 1px dashed lightgray;
   min-height: 10px;
-  margin-bottom: 10px;
 }
 
 .insert_field_btn {
@@ -80,7 +73,7 @@
 }
 
 .field_slot:hover {
-  border-color: black;
+  border: 1px dashed black;
 }
 
 .field_slot:hover .insert_field_btn {

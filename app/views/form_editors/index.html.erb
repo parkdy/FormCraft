@@ -20,10 +20,10 @@
     <form>
     	<%= render "form_editors/preview/field_slot" %>
 
-    	<%= render "form_editors/preview/preview_field",
-            field: Field.new(field_type: "text", label: "Email:") %>
-
-	    <%= render "form_editors/preview/field_slot" %>
+      <% @form.fields.order(:pos).each do |field| %>
+      	<%= render "form_editors/preview/preview_field", field: field %>
+  	    <%= render "form_editors/preview/field_slot" %>
+      <% end %>
 
 	    <input type="submit" id="submit_btn">
     </form>

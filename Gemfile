@@ -38,12 +38,13 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger'
 
 
+# Seeding database
+gem 'factory_girl_rails'
+gem 'faker'
+
 # Rspec for testing
 group :development, :test do
   gem 'rspec-rails'
-
-  gem 'factory_girl_rails'
-  gem 'faker'
 end
 
 group :development do

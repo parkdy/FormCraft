@@ -1,5 +1,5 @@
 <%= render "form_editors/editor/add_field/field_type",
-      field: Field.new(field_type: "text", label: "Text Box:") %>
+      field: FactoryGirl.build(:text_field) %>
 
 <%= render "form_editors/editor/add_field/field_type",
-      field: Field.new(field_type: "textarea", label: "Text Area:") %>
+      field: FactoryGirl.build(:textarea_field) %>
