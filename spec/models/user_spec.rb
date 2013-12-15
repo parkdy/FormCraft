@@ -1,18 +1,11 @@
 require 'spec_helper'
 
 describe User do
-  subject(:user) do
-    User.new(username: "user",
-             email: "user@example.com",
-             password: "password",
-             password_confirmation: "password")
-  end
+  subject(:user) { FactoryGirl.build(:user) }
 
   let(:other_user) do
-    User.new(username: "other_user",
-             email: "other_user@example.com",
-             password: "password",
-             password_confirmation: "password")
+    FactoryGirl.build(:user, username: "other_user",
+                             email: "other_user@example.com")
   end
 
   before { other_user.save! }

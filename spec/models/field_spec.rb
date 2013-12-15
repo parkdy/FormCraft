@@ -1,39 +1,11 @@
 require 'spec_helper'
 
 describe Field do
-  let(:user) do
-    User.new(username: "user",
-             email: "user@example.com",
-             password: "password",
-             password_confirmation: "password")
-  end
+  let(:user) { FactoryGirl.create(:user) }
+  let(:form) { FactoryGirl.create(:form, author_id: user.id) }
+  let(:other_field) { FactoryGirl.create(:field, form_id: form.id) }
 
-  let(:form) do
-    user.forms.build(title: "Test Form",
-                     description: "A form for testing")
-  end
-
-  let(:other_field) do
-    form.fields.build(field_type: "text",
-                      label: "Other Label:",
-                      default: "Default Value",
-                      name: "other_name",
-                      pos: 0)
-  end
-
-  before do
-    form.fields << other_field
-    user.forms << form
-    user.save!
-  end
-
-  subject(:field) do
-    form.fields.build(field_type: "text",
-                      label: "Name:",
-                      default: "Default Value",
-                      name: "name",
-                      pos: 1)
-  end
+  subject(:field) { FactoryGirl.build(:field, form_id: form.id) }
 
   # Attributes
 

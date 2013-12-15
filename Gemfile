@@ -41,6 +41,9 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Rspec for testing
 group :development, :test do
   gem 'rspec-rails'
+
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do

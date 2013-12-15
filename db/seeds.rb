@@ -10,72 +10,39 @@
 
 # Create users
 
-admin = User.create!(
-  username: "admin",
-  email: "admin@example.com",
-  password: "password",
-  password_confirmation: "password"
-)
+admin = FactoryGirl.create(:user, username: "admin",
+                                 email: "admin@example.com")
 admin.admin!
 admin.activate!
 
-guest = User.create!(
-  username: "guest",
-  email: "guest@example.com",
-  password: "password",
-  password_confirmation: "password"
-)
-
-user = User.create!(
-  username: "user",
-  email: "user@example.com",
-  password: "password",
-  password_confirmation: "password"
-)
+user = FactoryGirl.create(:user, username: "user",
+                                 email: "user@example.com")
 user.activate!
 
-david = User.create!(
-  username: "david",
-  email: "david@example.com",
-  password: "password",
-  password_confirmation: "password"
-)
+david = FactoryGirl.create(:user, username: "david",
+                                  email: "david@example.com")
+
+5.times do
+  FactoryGirl.create(:random_user)
+end
 
 
 
 # Create Forms
 
-form1 = user.forms.build(title: "Form 1",
-                         description: "My first form!")
-
-form2 = user.forms.build(title: "Form 2",
-                         description: "Another form!")
-
-form2 = user.forms.build(title: "Form 3",
-                         description: "One\nTwo\nThree")
-
+forms = []
+3.times { forms << FactoryGirl.build(:random_form) }
+user.forms = forms
 user.save!
 
-
+form1 = forms.first
 
 # Create Fields
 
-field1 = Field.new( field_type: "text",
-                    name: "name", 
-                    label: "Name:")
-
-field2 = Field.new( field_type: "text",
-                    name: "email", 
-                    label: "Email:")
-
-field3 = Field.new( field_type: "text",
-                    name: "subject", 
-                    label: "Subject:")
-
-field4 = Field.new( field_type: "text",
-                    name: "body", 
-                    label: "Body:", 
-                    default: "Enter text here...")
+field1 = FactoryGirl.build(:text_field, name: "name", label: "Name:")
+field2 = FactoryGirl.build(:text_field, name: "email", label: "Email:")
+field3 = FactoryGirl.build(:text_field, name: "subject", label: "Subject:")
+field4 = FactoryGirl.build(:textarea_field, name: "body", label: "Body:", default: "Enter text here...")
 
 form1.add_field!(field1)
 form1.add_field!(field3)

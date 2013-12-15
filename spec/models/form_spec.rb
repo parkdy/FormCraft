@@ -1,16 +1,9 @@
 require 'spec_helper'
 
 describe Form do
-  let(:user) do
-    User.new(username: "user",
-             email: "user@example.com",
-             password: "password",
-             password_confirmation: "password")
-  end
+  let(:user) { FactoryGirl.create(:user) }
 
-  before { user.save! }
-
-  subject(:form) { Form.new(title: "Test Form", description: "A form for testing", author_id: user.id) }
+  subject(:form) { FactoryGirl.build(:form, author_id: user.id) }
 
 
 
