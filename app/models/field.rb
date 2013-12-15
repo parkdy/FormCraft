@@ -37,12 +37,12 @@ class Field < ActiveRecord::Base
     def unique_form_field_name
       return if self.name.blank?
       duplicate = Field.find_by_form_id_and_name(self.form_id, self.name)
-      errors.add(:name, "must be unique for form") if duplicate
+      errors.add(:name, "must be unique for form") if duplicate && duplicate.id != self.id
     end
 
     def unique_form_field_pos
       duplicate = Field.find_by_form_id_and_pos(self.form_id, self.pos)
-      errors.add(:pos, "must be unique for form") if duplicate
+      errors.add(:pos, "must be unique for form") if duplicate && duplicate.id != self.id
     end
 
 end

@@ -16,7 +16,6 @@ admin = User.create!(
   password: "password",
   password_confirmation: "password"
 )
-
 admin.admin!
 admin.activate!
 
@@ -33,7 +32,6 @@ user = User.create!(
   password: "password",
   password_confirmation: "password"
 )
-
 user.activate!
 
 david = User.create!(
@@ -49,8 +47,38 @@ david = User.create!(
 
 form1 = user.forms.build(title: "Form 1",
                          description: "My first form!")
+
 form2 = user.forms.build(title: "Form 2",
                          description: "Another form!")
+
 form2 = user.forms.build(title: "Form 3",
                          description: "One\nTwo\nThree")
+
 user.save!
+
+
+
+# Create Fields
+
+field1 = Field.new( field_type: "text",
+                    name: "name", 
+                    label: "Name:")
+
+field2 = Field.new( field_type: "text",
+                    name: "email", 
+                    label: "Email:")
+
+field3 = Field.new( field_type: "text",
+                    name: "subject", 
+                    label: "Subject:")
+
+field4 = Field.new( field_type: "text",
+                    name: "body", 
+                    label: "Body:", 
+                    default: "Enter text here...")
+
+form1.add_field!(field1)
+form1.add_field!(field3)
+form1.insert_field!(field2, 1)
+form1.insert_field!(field4, 1)
+form1.move_field!(1, 3)
