@@ -10,9 +10,10 @@ window.FormBuilder = {
   	this.form = new FormBuilder.Models.Form(formEditorJSON.form, {parse: true});
   	this.mode = formEditorJSON.mode;
   	this.editorTab = formEditorJSON.editorTab;
+    this.fieldTypes = new FormBuilder.Collections.Fields(formEditorJSON.fieldTypes);
 
   	// Initialize router
-   	this.router = new FormBuilder.Routers.FormEditorsRouter({$rootEl: $("#form_editor")});
+   	this.router = new FormBuilder.Routers.FormEditorsRouter();
    	Backbone.history.start();
   }
 };

@@ -2,14 +2,27 @@
 
 <button id="save_btn">Save</button>
 
-<div id="form_editor" class="group"></div>
+<div id="form_editor" class="group">
+  <div id="editor_window">
+    <nav id="editor_tabs" class="group">
+    </nav>
+    <div id="editor_view">
+    </div>
+  </div>
+
+  <div id="preview_window">
+    <div id="preview_view">
+    </div>
+  </div>
+</div>
 
 
 
 <script type="application/json" id="form_editor_json">
-  { "form": <%= @form.to_json.html_safe %>, 
+  { "form": <%= @form.to_json.html_safe %>,
     "mode": <%= @mode.to_json.html_safe %>,
-    "editorTab": <%= @editor_tab.to_json.html_safe %> }
+    "editorTab": <%= @editor_tab.to_json.html_safe %>,
+    "fieldTypes": <%= @field_types.to_json.html_safe %> }
 </script>
 
 <script>
