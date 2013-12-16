@@ -1,10 +1,4 @@
 class Api::FormsController < ApplicationController
-  def index
-    @forms = current_user.forms
-
-    render json: @forms
-  end
-
   def show
     @form = Form.find(params[:id])
 

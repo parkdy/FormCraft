@@ -88,4 +88,8 @@ class Form < ActiveRecord::Base
     field.save!
   end
 
+  def as_json(options = nil)
+    super(options.merge(include: :fields))
+  end
+
 end
