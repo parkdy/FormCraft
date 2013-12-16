@@ -64,3 +64,6 @@ end
 
 # Backbone.js for client side MVC
 gem 'backbone-on-rails'
+
+# JavaScript templates
+gem 'ejs'

@@ -1,5 +1,4 @@
 <h2>Form Editor</h2>
-<h3><%= @mode.capitalize %> Form</h3>
 
 <%= button_to "Save", "#", method: :get %>
 
@@ -31,6 +30,12 @@
 </div>
 
 
+
+<script type="application/json" id="form_editor_json">
+  { "form": <%= @form.to_json.html_safe %>, 
+    "mode": <%= @mode.to_json.html_safe %>,
+    "editorTab": <%= @editor_tab.to_json.html_safe %> }
+</script>
 
 <script>
   $(document).ready(function(){
