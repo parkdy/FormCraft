@@ -12,7 +12,7 @@ window.FormBuilder = {
   	this.editorTab = formEditorJSON.editorTab;
 
   	// Initialize router
-   	this.router = new FormBuilder.Routers.FormEditorsRouter();
+   	this.router = new FormBuilder.Routers.FormEditorsRouter({$rootEl: $("#form_editor")});
    	Backbone.history.start();
   }
 };

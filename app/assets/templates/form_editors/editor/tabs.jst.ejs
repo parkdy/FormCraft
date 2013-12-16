@@ -1,0 +1,10 @@
+<nav id="editor_tabs" class="group">
+  <% var tabs = ["add_field", "field_settings", "form_settings"]; %>
+  <% var tabNames = ["Add Field", "Field Settings", "Form Settings"]; %>
+
+  <% for (var i=0; i<tabs.length; i++) { %>
+    <a href="#" class="editor_tab" id="<%= tabs[i] %>_tab">
+    	<%= tabNames[i] %>
+    </a>
+  <% } %>
+</nav>

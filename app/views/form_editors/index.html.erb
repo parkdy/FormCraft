@@ -1,33 +1,8 @@
 <h2>Form Editor</h2>
 
-<%= button_to "Save", "#", method: :get %>
+<button id="save_btn">Save</button>
 
-<div id="form_editor" class="group">
-  <div id="editor_window">
-    <%= render "form_editors/editor/tabs", params: @params %>
-
-    <div id="editor_view">
-      <%= render "form_editors/editor/" + @editor_tab + "_view" %>
-    </div>
-  </div>
-
-  <div id="preview_window">
-  	<div>
-	    <h2><%= @form.title %></h2>
-  	</div>
-
-    <form>
-    	<%= render "form_editors/preview/field_slot" %>
-
-      <% @form.fields.order(:pos).each do |field| %>
-      	<%= render "form_editors/preview/preview_field", field: field %>
-  	    <%= render "form_editors/preview/field_slot" %>
-      <% end %>
-
-	    <input type="submit" id="submit_btn">
-    </form>
-  </div>
-</div>
+<div id="form_editor" class="group"></div>
 
 
 
