@@ -9,7 +9,7 @@ FormBuilder.Models.Form = Backbone.Model.extend({
 
 		// Then store it as a collection
 		response.fields = new FormBuilder.Collections.Fields(response.fields);
-		
+
 		return response;
 	}
 });

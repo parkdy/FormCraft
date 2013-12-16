@@ -6,7 +6,9 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
   template: JST['form_editors/index'],
 
   events: {
-    "click .editor_tab": "switchEditorTab"
+    "click .editor_tab": "switchEditorTab",
+    "click #save_btn": "saveForm",
+    "click #discard_btn": "discardForm"
   },
 
   render: function() {
@@ -33,14 +35,6 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
     $('#preview_view').html(newView.render().$el);
   },
 
-  switchEditorTab: function(event) {
-    event.preventDefault();
-    var editorTab= $(event.target).attr("data-tab");
-    FormBuilder.editorTab = editorTab;
-
-    this.renderEditorView();
-  },
-
   renderEditorView: function() {
     var editorView;
 
@@ -62,6 +56,30 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
   renderPreviewView: function() {
     var previewView = new FormBuilder.Views.FormEditorsPreview();
     this._swapPreviewView(previewView);
-  }
+  },
 
+  switchEditorTab: function(event) {
+    event.preventDefault();
+    var editorTab= $(event.target).attr("data-tab");
+    FormBuilder.editorTab = editorTab;
+
+    this.renderEditorView();
+  },
+
+  saveForm: function(event) {
+    event.preventDefault();
+    FormBuilder.form.save({},{
+      success: function() {
+        alert("Form saved!")
+      },
+      error: function() {
+        alert("Error: could not save form!")
+      }
+    });
+  },
+
+  discardForm: function(event) {
+    event.preventDefault();
+    alert("discard")
+  }
 });

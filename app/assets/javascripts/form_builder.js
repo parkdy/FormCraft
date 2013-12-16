@@ -13,7 +13,7 @@ window.FormBuilder = {
     this.fieldTypes = new FormBuilder.Collections.Fields(formEditorJSON.fieldTypes);
 
   	// Initialize router
-   	this.router = new FormBuilder.Routers.FormEditorsRouter();
+   	new FormBuilder.Routers.FormEditorsRouter();
    	Backbone.history.start();
   }
 };
