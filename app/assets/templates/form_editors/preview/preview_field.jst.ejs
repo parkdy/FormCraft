@@ -1,0 +1,10 @@
+<div class="preview_field group" data-id="<%= field.get('id') %>" data-pos="<%= field.get('pos') %>">
+  <span class="preview_field_field">
+  	<%= JST["fields/types/" + field.get('field_type')]({ field: field }) %>
+  </span>
+
+  <nav class="preview_field_nav group">
+  	<button class="preview_field_btn">Delete</button>
+  	<button class="preview_field_btn">Edit</button>
+  </nav>
+</div>

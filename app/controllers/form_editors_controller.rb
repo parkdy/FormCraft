@@ -1,6 +1,5 @@
 class FormEditorsController < ApplicationController
   def index
-    @params = params
     @mode = params[:mode] || "new"
     @editor_tab = params[:editor_tab] || "add_field"
     
