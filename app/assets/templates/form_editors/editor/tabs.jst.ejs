@@ -2,7 +2,7 @@
 <% var tabNames = ["Add Field", "Field Settings", "Form Settings"]; %>
 
 <% for (var i=0; i<tabs.length; i++) { %>
-  <a href="#" class="editor_tab" id="<%= tabs[i] %>_tab">
+  <a href="#" class="editor_tab" data-tab="<%= tabs[i] %>">
   	<%= tabNames[i] %>
   </a>
 <% } %>

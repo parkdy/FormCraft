@@ -1,8 +1,4 @@
 FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
-  initialize: function(options) {
-    this.$el = options.$el;
-  },
-
   template: JST['form_editors/preview'],
 
   render: function() {

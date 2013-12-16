@@ -1,8 +1,4 @@
 FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
-  initialize: function(options) {
-    this.$el = options.$el;
-  },
-
   template: JST['form_editors/editor/field_settings'],
 
   render: function() {
