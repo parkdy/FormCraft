@@ -89,6 +89,6 @@ class Form < ActiveRecord::Base
   end
 
   def as_json(options = nil)
-    super(options.merge(include: :fields))
+    super(options.merge(include: {fields: {include: [:field_options]}}))
   end
 end

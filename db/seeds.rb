@@ -42,14 +42,20 @@ unless Rails.env.production?
 	# Create Fields
 
 	field1 = FactoryGirl.build(:text_field, name: "name", label: "Name:")
-	field2 = FactoryGirl.build(:text_field, name: "email", label: "Email:")
-	field3 = FactoryGirl.build(:text_field, name: "subject", label: "Subject:")
-	field4 = FactoryGirl.build(:textarea_field, name: "body", label: "Body:", default: "Enter text here...")
+	field2 = FactoryGirl.build(:textarea_field, name: "biography", label: "Biography:", default: "Enter text here...")
+
+  field3 = FactoryGirl.build(:radio_field, name: "gender", label: "Gender:")
+  field3.field_options.build(label: "Male", value: "m")
+  field3.field_options.build(label: "Female", value: "f")
+
+  #field4 = FactoryGirl.build(:checkbox_field, name: "likes", label: "Likes:")
+  #field4.field_options.build(label: "Long walks on the beach", value: "1")
+  #field4.field_options.build(label: "Candle lit dinners", value: "2")
+
 
 	form1.add_field!(field1)
-	form1.add_field!(field3)
-	form1.insert_field!(field2, 1)
-	form1.insert_field!(field4, 1)
-	form1.move_field!(1, 3)
-	
+	form1.add_field!(field2)
+  form1.add_field!(field3)
+  #form1.add_field(field4)
+
 end

@@ -10,6 +10,11 @@ FormBuilder.Models.Form = Backbone.Model.extend({
 		// Then store it as a collection
 		response.fields = new FormBuilder.Collections.Fields(response.fields);
 
+    // Store each field's options as a collection
+    response.fields.each(function(field) {
+      field.set('field_options', new FormBuilder.Collections.FieldOptions(field.get('field_options')));
+    });
+
 		return response;
 	},
 

@@ -30,6 +30,14 @@ class Field < ActiveRecord::Base
 
 
 
+  # Instance Methods
+
+  def as_json(options = nil)
+    super(options.merge(include: :field_options))
+  end
+
+
+
   private
 
     # Custom Validators

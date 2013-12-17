@@ -3,8 +3,7 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
 
   events: {
     "click .delete_field_btn": "deleteField",
-    "click .preview_field": "editField",
-    "click .insert_field_btn": "insertField"
+    "click .preview_field": "editField"
   },
 
   render: function() {
@@ -52,11 +51,6 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
     // Highlight active field
     $(".preview_field").removeClass("active_field");
     $field.addClass("active_field");
-  },
-
-  insertField: function(event){
-    event.preventDefault();
-    alert('insert');
-  },
+  }
 
 });

@@ -1,0 +1,8 @@
+<label><%= field.label %><br>
+  <% field.field_options.each do |option| %>
+	  <input type="radio"
+           name="<%= field.name %>"
+           value="<%= option.value %>">
+    <%= option.label %><br>
+  <% end %>
+</label>
