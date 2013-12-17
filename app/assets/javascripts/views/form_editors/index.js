@@ -70,6 +70,13 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
     event.preventDefault();
 
     if (confirm('Save your work?')) {
+      // Destroy deleted fields
+      FormBuilder.deletedFields.each(function(field) {
+        field.destroy({ wait: true });
+      });
+      FormBuilder.deletedFields.reset();
+
+      // Save form
       FormBuilder.form.save({}, {
         success: function() { alert("Saved form"); },
         error: function() { alert("Could not save form"); }

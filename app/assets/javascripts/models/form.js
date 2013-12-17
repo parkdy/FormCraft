@@ -23,8 +23,11 @@ FormBuilder.Models.Form = Backbone.Model.extend({
     Backbone.Model.prototype.save.call(self, attributes, {
       success: function() {
         // Save form fields
-        fields.each(function(field) {
+        for (var i = 0; i < fieldsTotal; i++) {
+          var field = fields.at(i);
           field.set('form_id', self.get('id'));
+          field.set('pos', i);
+
           field.save({}, {
             success: function() {
               fieldsSaved++;
@@ -37,7 +40,7 @@ FormBuilder.Models.Form = Backbone.Model.extend({
             },
             error: function() { alert('Error saving field'); }
           });
-        });
+        }
       },
       error: function() { options.error(); }
     });

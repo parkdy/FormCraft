@@ -19,7 +19,7 @@ class Form < ActiveRecord::Base
     inverse_of: :forms
   )
 
-  has_many :fields, inverse_of: :form
+  has_many :fields, inverse_of: :form, dependent: :destroy
 
 
 

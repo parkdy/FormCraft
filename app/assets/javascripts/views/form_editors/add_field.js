@@ -24,7 +24,7 @@ FormBuilder.Views.FormEditorsAddField = Backbone.View.extend({
                               .clone();
 
     newField.set('pos', FormBuilder.form.get('fields').length);
-    newField.set('name', field_type + newField.get('pos'));
+    newField.set('name', field_type + newField.cid);
 
     // Add new field to form fields
     FormBuilder.form.get('fields').add(newField);

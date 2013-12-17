@@ -57,7 +57,8 @@ class User < ActiveRecord::Base
     class_name: "Form",
     foreign_key: :author_id,
     primary_key: :id,
-    inverse_of: :author
+    inverse_of: :author,
+    dependent: :destroy
   )
 
 
