@@ -3,7 +3,7 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
 
   events: {
     "click .delete_field_btn": "deleteField",
-    "click .edit_field_btn": "editField",
+    "click .preview_field": "editField",
     "click .insert_field_btn": "insertField"
   },
 
@@ -40,12 +40,18 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
 
     // Find field
     var $field = $(event.target).closest('.preview_field');
-    var field_pos = parseInt($field.attr('data-pos'));
-    var field = FormBuilder.form.get('fields').findWhere({pos: field_pos});
+    var fieldPos = parseInt($field.attr('data-pos'));
+    var field = FormBuilder.form.get('fields').findWhere({pos: fieldPos});
 
     // Open its field settings tab
     FormBuilder.editorTab = "field_settings";
-    FormBuilder.formEditorsIndex.renderEditorView({field: field})
+    var indexView = FormBuilder.formEditorsIndex;
+    indexView.renderEditorTabs();
+    indexView.renderEditorView({field: field});
+
+    // Highlight active field
+    $(".preview_field").removeClass("active_field");
+    $field.addClass("active_field");
   },
 
   insertField: function(event){

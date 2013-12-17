@@ -6,7 +6,7 @@
 }
 
 #editor_window {
-  background: lightgray;
+  background: #eee;
   width: 300px;
   height: 800px;
   float: left;
@@ -15,7 +15,7 @@
 
 #preview_window {
   background: white;
-  width: 478px;
+  width: 480px;
   height: 780px;
   margin: 10px;
   float: left;
@@ -36,6 +36,11 @@
   border-color: gray;
   border-width: 1px;
   border-radius: 10px 10px 0 0;
+}
+
+.active_tab {
+  background-color: #eee;
+  border-bottom: 1px solid #eee;
 }
 
 #editor_view {
@@ -60,8 +65,16 @@
   float: right;
 }
 
+.preview_field {
+  border: 1px solid transparent;
+}
+
 .preview_field:hover {
   border: 1px dashed black;
+}
+
+.active_field {
+  background: lightyellow;
 }
 
 .field_slot {

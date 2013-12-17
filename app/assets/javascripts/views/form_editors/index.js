@@ -13,8 +13,7 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
   render: function() {
     // Render editor tabs
-    var $editorTabs = $('#editor_tabs');
-    $editorTabs.html($(JST["form_editors/editor/tabs"]({})));
+    this.renderEditorTabs();
 
     // Render sub-views
     this.renderEditorView();
@@ -33,6 +32,15 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
     this._currentPreviewView && this._currentPreviewView.remove();
     this._currentPreviewView = newView;
     $('#preview_view').html(newView.render().$el);
+  },
+
+  renderEditorTabs: function() {
+    var $editorTabs = $('#editor_tabs');
+    $editorTabs.html($(JST["form_editors/editor/tabs"]({})));
+
+    // Show which editor tab is active
+    $(".editor_tab").removeClass("active_tab");
+    $("#"+FormBuilder.editorTab+"_tab").addClass("active_tab");
   },
 
   renderEditorView: function(options) {
@@ -60,10 +68,16 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
   switchEditorTab: function(event) {
     event.preventDefault();
+
+    // Change editor tab
     var editorTab= $(event.target).attr("data-tab");
     FormBuilder.editorTab = editorTab;
 
+    this.renderEditorTabs();
     this.renderEditorView();
+
+    // Clear active field in preview window
+    $(".preview_field").removeClass("active_field");
   },
 
   saveForm: function(event) {
