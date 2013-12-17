@@ -79,18 +79,11 @@
 
 .field_slot {
   min-height: 10px;
-}
-
-.insert_field_btn {
-  display: none;
+  border: 1px dashed transparent;
 }
 
 .field_slot:hover {
   border: 1px dashed black;
-}
-
-.field_slot:hover .insert_field_btn {
-  display: block;
 }
 
 .preview_field_field {
@@ -99,14 +92,6 @@
 
 .preview_field_btn {
   float: right;
-}
-
-.preview_field_nav {
-  display: none;
-}
-
-.preview_field:hover .preview_field_nav {
-  display: block;
 }
 
 .settings_field {
