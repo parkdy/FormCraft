@@ -69,14 +69,23 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
   saveForm: function(event) {
     event.preventDefault();
 
-    FormBuilder.form.save({}, {
-      success: function() { alert("Saved form"); },
-      error: function() { alert("Could not save form"); }
-    });
+    if (confirm('Save your work?')) {
+      FormBuilder.form.save({}, {
+        success: function() { alert("Saved form"); },
+        error: function() { alert("Could not save form"); }
+      });
+    }
   },
 
   discardForm: function(event) {
     event.preventDefault();
-    alert("discard")
+
+    if (confirm('Discard your work?')) {
+      FormBuilder.form.fetch({
+        success: function() {
+          FormBuilder.formEditorsIndex.render();
+        }
+      });
+    }
   }
 });
