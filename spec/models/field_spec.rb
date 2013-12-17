@@ -20,6 +20,7 @@ describe Field do
   # Associations
 
   it { should belong_to :form }
+  it { should have_many :field_options }
 
 
 
@@ -36,11 +37,6 @@ describe Field do
 
   describe "with duplicate field names in a form" do
     before { field.name = other_field.name }
-    it { should_not be_valid }
-  end
-
-  describe "with duplicate field positions in a form" do
-    before { field.pos = other_field.pos }
     it { should_not be_valid }
   end
 

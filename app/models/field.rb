@@ -18,6 +18,7 @@ class Field < ActiveRecord::Base
   # Associations
 
   belongs_to :form, inverse_of: :fields
+  has_many :field_options, inverse_of: :field, dependent: :destroy
 
 
 

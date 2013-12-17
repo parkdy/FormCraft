@@ -21,5 +21,20 @@ FactoryGirl.define do
 			field_type "textarea"
 			label "Multi-Line Text Field:"
 		end
+
+		factory :radio_field do
+			field_type "radio"
+			label "Radio Button Field:"
+		end
+
+		factory :checkbox_field do
+			field_type "checkbox"
+			label "Check Box Field:"
+		end
+
+		factory :select_field do
+			field_type "select"
+			label "Dropdown Select Field:"
+		end
 	end
 end
