@@ -1,0 +1,7 @@
+<form id="field_settings_form">
+  <% settingsFields.each(function(field) { %>
+    <div class="settings_field" data-name="<%= field.get('name') %>">
+      <%= JST["fields/types/" + field.get('field_type')]({field: field}) %>
+    </div>
+  <% }); %>
+</form>

@@ -1,5 +1,5 @@
 <form id="form_settings_form">
-  <% settings_fields.each(function(field) { %>
+  <% settingsFields.each(function(field) { %>
     <div class="settings_field" data-name="<%= field.get('name') %>">
       <%= JST["fields/types/" + field.get('field_type')]({field: field}) %>
     </div>

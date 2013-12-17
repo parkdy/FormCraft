@@ -6,13 +6,13 @@ FormBuilder.Views.FormEditorsFormSettings = Backbone.View.extend({
   },
 
   render: function() {
-    var settings_fields = new FormBuilder.Collections.Fields([
+    var settingsFields = new FormBuilder.Collections.Fields([
       { field_type: "text", name: "title", label: "Title:", default: FormBuilder.form.get('title') },
       { field_type: "textarea", name: "description", label: "Description:", default: FormBuilder.form.get('description') }
     ]);
 
   	var renderedContent = this.template({ form: FormBuilder.form,
-                                          settings_fields: settings_fields });
+                                          settingsFields: settingsFields });
     this.$el.html(renderedContent);
 
   	return this;

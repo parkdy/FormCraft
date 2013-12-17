@@ -37,7 +37,15 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
 
   editField: function(event){
     event.preventDefault();
-    alert('edit');
+
+    // Find field
+    var $field = $(event.target).closest('.preview_field');
+    var field_pos = parseInt($field.attr('data-pos'));
+    var field = FormBuilder.form.get('fields').findWhere({pos: field_pos});
+
+    // Open its field settings tab
+    FormBuilder.editorTab = "field_settings";
+    FormBuilder.formEditorsIndex.renderEditorView({field: field})
   },
 
   insertField: function(event){

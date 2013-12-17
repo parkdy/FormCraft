@@ -35,18 +35,18 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
     $('#preview_view').html(newView.render().$el);
   },
 
-  renderEditorView: function() {
+  renderEditorView: function(options) {
     var editorView;
 
     switch (FormBuilder.editorTab) {
     case "add_field":
-      editorView = new FormBuilder.Views.FormEditorsAddField();
+      editorView = new FormBuilder.Views.FormEditorsAddField(options);
       break;
     case "field_settings":
-      editorView = new FormBuilder.Views.FormEditorsFieldSettings();
+      editorView = new FormBuilder.Views.FormEditorsFieldSettings(options);
       break;
     case "form_settings":
-      editorView = new FormBuilder.Views.FormEditorsFormSettings();
+      editorView = new FormBuilder.Views.FormEditorsFormSettings(options);
       break;
     }
 
