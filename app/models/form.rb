@@ -39,7 +39,7 @@ class Form < ActiveRecord::Base
     # Make room by shifting other fields to the right and save! them
     shift_fields = self.fields.where("pos >= ?", pos).order("pos DESC")
     shift_fields.each do |shift_field|
-      shift_field.pos += 1 
+      shift_field.pos += 1
       shift_field.save!
     end
 
@@ -68,7 +68,7 @@ class Form < ActiveRecord::Base
       max = pos2
       dir = -1
       order = "ASC"
-      
+
     else
       min = pos2
       max = pos1 - 1
@@ -78,7 +78,7 @@ class Form < ActiveRecord::Base
 
     shift_fields = self.fields.where("pos >= ? AND pos <= ?", min, max).order("pos #{order}")
 
-    shift_fields.each do |shift_field| 
+    shift_fields.each do |shift_field|
       shift_field.pos += dir
       shift_field.save!
     end
@@ -91,5 +91,4 @@ class Form < ActiveRecord::Base
   def as_json(options = nil)
     super(options.merge(include: :fields))
   end
-
 end

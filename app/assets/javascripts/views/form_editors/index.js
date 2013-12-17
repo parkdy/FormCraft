@@ -68,13 +68,10 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
   saveForm: function(event) {
     event.preventDefault();
-    FormBuilder.form.save({},{
-      success: function() {
-        alert("Form saved!")
-      },
-      error: function() {
-        alert("Error: could not save form!")
-      }
+
+    FormBuilder.form.save({}, {
+      success: function() { alert("Saved form"); },
+      error: function() { alert("Could not save form"); }
     });
   },
 

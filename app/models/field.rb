@@ -12,7 +12,6 @@ class Field < ActiveRecord::Base
   validates :pos, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validate :unique_form_field_name
-  validate :unique_form_field_pos
 
 
 
@@ -39,10 +38,4 @@ class Field < ActiveRecord::Base
       duplicate = Field.find_by_form_id_and_name(self.form_id, self.name)
       errors.add(:name, "must be unique for form") if duplicate && duplicate.id != self.id
     end
-
-    def unique_form_field_pos
-      duplicate = Field.find_by_form_id_and_pos(self.form_id, self.pos)
-      errors.add(:pos, "must be unique for form") if duplicate && duplicate.id != self.id
-    end
-
 end

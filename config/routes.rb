@@ -23,7 +23,7 @@ FormBuilder::Application.routes.draw do
   end
 
   namespace :api do
-    resources :forms, only: [:index, :show, :create, :update, :destroy]
+    resources :forms, only: [:show, :create, :update, :destroy]
     resources :fields, only: [:show, :create, :update, :destroy]
   end
 
