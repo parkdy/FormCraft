@@ -27,6 +27,10 @@ FormBuilder.Models.Form = Backbone.Model.extend({
     // Save form
     Backbone.Model.prototype.save.call(self, attributes, {
       success: function() {
+        if (fieldsTotal === 0) {
+          options.success();
+        }
+
         // Save form fields
         for (var i = 0; i < fieldsTotal; i++) {
           var field = fields.at(i);

@@ -25,6 +25,7 @@ FormBuilder::Application.routes.draw do
   namespace :api do
     resources :forms, only: [:show, :create, :update, :destroy]
     resources :fields, only: [:show, :create, :update, :destroy]
+    resources :field_options, only: [:show, :create, :update, :destroy]
   end
 
   get 'signup' => 'users#new'
