@@ -1,9 +1,11 @@
 <label><%= field.get('label') %><br>
   <% field.get('field_options').each(function(option) { %>
-	  <input type="radio"
-           name="<%= field.get('name') %>"
-           value="<%= option.get('value') %>"
-           <%= (option.get('value') == field.get('default') ? 'checked' : '' )%>>
-    <%= option.get('label') %><br>
+    <label>
+  	  <input type="radio"
+             name="<%= field.get('name') %>"
+             value="<%= option.get('value') %>"
+             <%= (option.get('value') == field.get('default') ? 'checked' : '' ) %>>
+      <%= option.get('label') %>
+    </label><br>
   <% }); %>
 </label>

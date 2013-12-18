@@ -47,6 +47,7 @@ unless Rails.env.production?
   field3 = FactoryGirl.build(:radio_field, name: "gender", label: "Gender:")
   field3.field_options.build(label: "Male", value: "m")
   field3.field_options.build(label: "Female", value: "f")
+  field3.default = field3.field_options.first.value
 
   #field4 = FactoryGirl.build(:checkbox_field, name: "likes", label: "Likes:")
   #field4.field_options.build(label: "Long walks on the beach", value: "1")

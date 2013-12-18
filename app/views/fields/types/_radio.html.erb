@@ -1,8 +1,11 @@
 <label><%= field.label %><br>
   <% field.field_options.each do |option| %>
-	  <input type="radio"
-           name="<%= field.name %>"
-           value="<%= option.value %>">
-    <%= option.label %><br>
+    <label>
+  	  <input type="radio"
+             name="<%= field.name %>"
+             value="<%= option.value %>"
+             <%= 'checked'.html_safe if (option.value == field.default) %>>
+      <%= option.label %>
+    </label><br>
   <% end %>
 </label>

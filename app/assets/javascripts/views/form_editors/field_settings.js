@@ -6,7 +6,8 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
   template: JST['form_editors/editor/field_settings'],
 
   events: {
-    "blur .settings_field": "updateField"
+    "blur .settings_field": "updateField",
+    "click #update_settings_btn": "dummyButton"
   },
 
   render: function() {
@@ -43,6 +44,10 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
     this.field.set(fieldAttr, value);
 
     FormBuilder.formEditorsIndex.renderPreviewView();
+  },
+
+  dummyButton: function(event) {
+    event.preventDefault();
   }
 
 });

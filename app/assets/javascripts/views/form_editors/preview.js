@@ -35,7 +35,8 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
   },
 
   editField: function(event){
-    event.preventDefault();
+    // This prevented radio buttons from working in preview window
+    // event.preventDefault();
 
     // Find field
     var $field = $(event.target).closest('.preview_field');

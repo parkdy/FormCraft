@@ -2,7 +2,8 @@ FormBuilder.Views.FormEditorsFormSettings = Backbone.View.extend({
   template: JST['form_editors/editor/form_settings'],
 
   events: {
-    "blur .settings_field": "updateForm"
+    "blur .settings_field": "updateForm",
+    "click #update_settings_btn": "dummyButton"
   },
 
   render: function() {
@@ -25,6 +26,10 @@ FormBuilder.Views.FormEditorsFormSettings = Backbone.View.extend({
     FormBuilder.form.set(formAttr, value);
 
     FormBuilder.formEditorsIndex.renderPreviewView();
+  },
+
+  dummyButton: function(event) {
+    event.preventDefault();
   }
 
 });
