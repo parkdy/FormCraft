@@ -58,10 +58,6 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
   dragField: function(event) {
 
     $previewField = $(event.target).closest('.preview_field');
-    $previewField.draggable({
-      containment: "#form_editor",
-      revert: "invalid"
-    });
 
     $(".preview_field").droppable({
       tolerance: "pointer",

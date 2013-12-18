@@ -64,6 +64,11 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
   renderPreviewView: function() {
     var previewView = new FormBuilder.Views.FormEditorsPreview();
     this._swapPreviewView(previewView);
+
+    $(".preview_field").draggable({
+      containment: "#form_editor",
+      revert: "invalid"
+    });
   },
 
   switchEditorTab: function(event) {
