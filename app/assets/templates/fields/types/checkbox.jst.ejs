@@ -1,0 +1,16 @@
+<label><%= field.get('label') %><br>
+
+  <input type="hidden"
+         name="<%= field.get('name')+'[]' %>"
+         value="" >
+
+  <% field.get('field_options').each(function(option) { %>
+    <label>
+  	  <input type="checkbox"
+             name="<%= field.get('name')+'[]' %>"
+             value="<%= option.get('value') %>"
+             <%= (option.get('default') ? 'checked' : '' ) %>>
+      <%= option.get('label') %>
+    </label><br>
+  <% }); %>
+</label>

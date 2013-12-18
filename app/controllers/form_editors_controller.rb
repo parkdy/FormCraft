@@ -10,9 +10,17 @@ class FormEditorsController < ApplicationController
     	@form.author_id = (signed_in? ? current_user.id : nil)
     end
 
-    @field_types = [
-      FactoryGirl.build(:text_field, form_id: @form.id, pos: nil, name: nil),
-      FactoryGirl.build(:textarea_field, form_id: @form.id, pos: nil, name: nil)
-    ]
+    # Create field types
+    @field_types = field_types(@form)
   end
+
+  private
+
+    def field_types(form)
+      field_types = %w{text textarea radio checkbox select}
+
+      field_types.map do |type|
+        FactoryGirl.build((type+"_field").to_sym, form_id: form.id, pos: nil)
+      end
+    end
 end

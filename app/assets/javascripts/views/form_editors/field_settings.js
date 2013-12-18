@@ -41,7 +41,29 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
     var fieldAttr = $(event.target).closest('.settings_field').attr('data-name');
     var value = $(event.target).val();
 
-    this.field.set(fieldAttr, value);
+    // Default value for checkbox fields
+    var options = this.field.get('field_options');
+
+    if (fieldAttr == 'default' && this.field.get('field_type') == 'checkbox') {
+
+      // Wrap default value settings field in form
+      var $form = $('<form></form>');
+      $form.html($(event.target).closest('.settings_field').clone());
+
+      // Grab default values from form
+      var defaultValues = $form.serializeJSON().default;
+      defaultValues.shift();
+
+      // Set field options' default properties
+      options.each(function(option) {
+        var isDefault = (defaultValues.indexOf(option.get('value')) > -1);
+        option.set('default', isDefault);
+      });
+
+    } else {
+      // No field options
+      this.field.set(fieldAttr, value);
+    }
 
     FormBuilder.formEditorsIndex.renderPreviewView();
   },

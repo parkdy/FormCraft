@@ -10,7 +10,7 @@ window.FormBuilder = {
   	this.form = new FormBuilder.Models.Form(formEditorJSON.form, {parse: true});
   	this.mode = formEditorJSON.mode;
   	this.editorTab = formEditorJSON.editorTab;
-    this.fieldTypes = new FormBuilder.Collections.Fields(formEditorJSON.fieldTypes);
+    this.fieldTypes = new FormBuilder.Collections.Fields(formEditorJSON.fieldTypes, {parse: true});
 
     // Keep track of fields we need to delete
     this.deletedFields = new FormBuilder.Collections.Fields([]);

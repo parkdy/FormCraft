@@ -14,6 +14,7 @@ describe FieldOption do
   it { should allow_mass_assignment_of :field_id }
   it { should allow_mass_assignment_of :value }
   it { should allow_mass_assignment_of :label }
+  it { should allow_mass_assignment_of :default }
 
 
 
@@ -28,6 +29,8 @@ describe FieldOption do
   it { should validate_presence_of :field }
   it { should validate_presence_of :value }
   it { should validate_presence_of :label }
+
+  it { should allow_value(true, false).for(:default) }
 
 
 

@@ -45,18 +45,19 @@ unless Rails.env.production?
 	field2 = FactoryGirl.build(:textarea_field, name: "biography", label: "Biography:", default: "Enter text here...")
 
   field3 = FactoryGirl.build(:radio_field, name: "gender", label: "Gender:")
-  field3.field_options.build(label: "Male", value: "m")
+  field3.field_options = []
+  field3.field_options.build(label: "Male", value: "m", default: true)
   field3.field_options.build(label: "Female", value: "f")
-  field3.default = field3.field_options.first.value
 
-  #field4 = FactoryGirl.build(:checkbox_field, name: "likes", label: "Likes:")
-  #field4.field_options.build(label: "Long walks on the beach", value: "1")
-  #field4.field_options.build(label: "Candle lit dinners", value: "2")
+  field4 = FactoryGirl.build(:checkbox_field, name: "likes", label: "Likes:")
+  field4.field_options = []
+  field4.field_options.build(label: "Long walks on the beach", value: "1")
+  field4.field_options.build(label: "Candle lit dinners", value: "2")
 
 
 	form1.add_field!(field1)
 	form1.add_field!(field2)
   form1.add_field!(field3)
-  #form1.add_field(field4)
+  form1.add_field!(field4)
 
 end

@@ -1,5 +1,5 @@
 class FieldOption < ActiveRecord::Base
-  attr_accessible :field_id, :label, :value
+  attr_accessible :field_id, :label, :value, :default
 
 
 
@@ -12,4 +12,6 @@ class FieldOption < ActiveRecord::Base
   # Validations
 
   validates :field, :label, :value, presence: true
+
+  validates :default, inclusion: { in: [true, false] }
 end

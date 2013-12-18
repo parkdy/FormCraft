@@ -1,0 +1,16 @@
+<label><%= field.label %><br>
+
+  <input type="hidden"
+         name="<%= field.name + '[]' %>"
+         value="" >
+
+  <% field.field_options.each do |option| %>
+    <label>
+  	  <input type="checkbox"
+             name="<%= field.name + '[]' %>"
+             value="<%= option.value %>"
+             <%= (option.default ? 'checked' : '' ).html_safe %>>
+      <%= option.label %>
+    </label><br>
+  <% end %>
+</label>

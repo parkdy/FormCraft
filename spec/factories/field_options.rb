@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :field_option do
     field_id 1
+    default false
 
     sequence :value do |n|
       "#{n}"
