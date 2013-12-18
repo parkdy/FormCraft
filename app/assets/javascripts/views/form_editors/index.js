@@ -59,6 +59,14 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
     }
 
     this._swapEditorView(editorView);
+
+    if (FormBuilder.editorTab == 'add_field') {
+      $(".field_type_field").draggable({
+        containment: "#form_editor",
+        revert: true,
+        stack: ".draggable"
+      });
+    }
   },
 
   renderPreviewView: function() {
@@ -67,7 +75,8 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
     $(".preview_field").draggable({
       containment: "#form_editor",
-      revert: "invalid"
+      revert: "invalid",
+      stack: ".draggable"
     });
   },
 
