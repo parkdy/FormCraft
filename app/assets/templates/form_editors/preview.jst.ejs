@@ -3,9 +3,9 @@
 </div>
 
 <form id="preview_form">
-  <% form.get("fields").each(function(field) { %>
-  	<%= JST["form_editors/preview/field_slot"]({ pos: field.get("pos") }) %>
-    <%= JST["form_editors/preview/preview_field"]({ field: field }) %>
+  <% form.get("fields").each(function(field, idx) { %>
+  	<%= JST["form_editors/preview/field_slot"]({ pos: idx }) %>
+    <%= JST["form_editors/preview/preview_field"]({ field: field, pos: idx }) %>
   <% }); %>
 
   <%= JST["form_editors/preview/field_slot"]({ pos: form.get("fields").length }) %>

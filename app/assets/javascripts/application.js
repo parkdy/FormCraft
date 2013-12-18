@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.serializeJSON
+//= require jquery-ui-1.10.3.custom
+
 //= require underscore
 //= require backbone
 //= require form_builder
