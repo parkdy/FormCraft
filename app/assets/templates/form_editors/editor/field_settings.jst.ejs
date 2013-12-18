@@ -5,5 +5,9 @@
     </div>
   <% }); %>
 
+  <% if (field.get('field_options').length > 0) { %>
+    <%= JST["form_editors/editor/field_settings/field_options"]({field_options: field.get('field_options')}) %>
+  <% } %>
+
   <button id="update_settings_btn">Update</button>
 </form>

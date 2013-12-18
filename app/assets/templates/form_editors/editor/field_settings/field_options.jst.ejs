@@ -1,0 +1,18 @@
+<div class="field_options_settings settings_field" data-name="field_options_settings">
+  <label>Options:<br>
+    <table>
+      <th>Label</th>
+      <th>Value</th>
+
+      <% field_options.each(function(option) { %>
+        <tr data-option_cid="<%= option.cid %>">
+          <td><input type="text" class="option_label" name="<%= option.cid %>[label]" value="<%= option.get('label') %>"></td>
+          <td><input type="text" class="option_value" name="<%= option.cid %>[value]" value="<%= option.get('value') %>"></td>
+          <td><button class="delete_option_btn">X</button></td>
+        </tr>
+      <% }); %>
+
+      <tr><td><button id="add_option_btn">Add Option</button></td></tr>
+    </table>
+  </label>
+</div>
