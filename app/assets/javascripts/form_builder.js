@@ -12,8 +12,9 @@ window.FormBuilder = {
   	this.editorTab = formEditorJSON.editorTab;
     this.fieldTypes = new FormBuilder.Collections.Fields(formEditorJSON.fieldTypes, {parse: true});
 
-    // Keep track of fields we need to delete
+    // Keep track of models we need to delete
     this.deletedFields = new FormBuilder.Collections.Fields([]);
+    this.deletedFieldOptions = new FormBuilder.Collections.FieldOptions([]);
 
   	// Initialize router
    	new FormBuilder.Routers.FormEditorsRouter();

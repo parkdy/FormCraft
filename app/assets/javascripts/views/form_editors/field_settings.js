@@ -8,7 +8,8 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
   events: {
     "blur .settings_field": "updateField",
     "click #update_settings_btn": "dummyButton",
-    "click #add_option_btn": "addFieldOption"
+    "click #add_option_btn": "addFieldOption",
+    "click .delete_option_btn": "deleteFieldOption"
   },
 
   render: function() {
@@ -104,6 +105,23 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
     options.add(newOption);
 
     FormBuilder.formEditorsIndex.renderEditorView({field: this.field});
+  },
+
+  deleteFieldOption: function(event) {
+    event.preventDefault();
+
+    var options = this.field.get('field_options');
+
+    // Find field option we want to delete
+    var optionCID = $(event.target).closest('tr').attr('data-option_cid');
+    var option = options.get({cid: optionCID});
+
+    // Delete it
+    options.remove(option);
+    FormBuilder.deletedFieldOptions.add(option);
+
+    FormBuilder.formEditorsIndex.renderEditorView({field: this.field});
+    FormBuilder.formEditorsIndex.renderPreviewView();
   }
 
 });

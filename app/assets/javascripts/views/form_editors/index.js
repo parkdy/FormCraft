@@ -90,6 +90,12 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
       });
       FormBuilder.deletedFields.reset();
 
+      // Destroy deleted field options
+      FormBuilder.deletedFieldOptions.each(function(option) {
+        option.destroy({ wait: true });
+      });
+      FormBuilder.deletedFieldOptions.reset();
+
       // Save form
       FormBuilder.form.save({}, {
         success: function() { alert("Saved form"); },
