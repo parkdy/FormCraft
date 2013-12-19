@@ -95,8 +95,8 @@ class Form < ActiveRecord::Base
 
   # #responses_csv
   # Convert form's responses to CSV format
-  def responses_csv
-    CSV.generate do |csv|
+  def responses_csv(options = {})
+    CSV.generate(options) do |csv|
       response_attribute_names = ["status", "submitted"]
       field_names = self.fields.order(:pos).map(&:name)
 

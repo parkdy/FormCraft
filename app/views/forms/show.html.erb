@@ -23,9 +23,10 @@
 <h3>Responses (<%= @form.responses.count %>)</h3>
 
 <p>
-  <a href="<%= form_responses_url(@form, format: :csv) %>">
-    <button>Download CSV</button>
-  </a>
+  Download as:
+  <a href="<%= form_responses_url(@form, format: :csv) %>">CSV</a>
+  |
+  <a href="<%= form_responses_url(@form, format: :xls) %>">Excel</a>
 </p>
 
 <% if @form.responses.count > 0 %>

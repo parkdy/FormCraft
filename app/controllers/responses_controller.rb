@@ -37,6 +37,7 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       format.html { render :index }
       format.csv { render text: @form.responses_csv }
+      format.xls { render partial: "shared/responses_table", locals: { form: @form } }
     end
   end
 end
