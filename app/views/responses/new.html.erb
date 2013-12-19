@@ -1,0 +1,16 @@
+<h2><%= @form.title %></h2>
+
+<form id="response_form" action="<%= form_responses_url %>" method="post">
+  <%= render "shared/csrf" %>
+
+  <% @form.fields.order(:pos).each do |field| %>
+    <% field.name = "response[#{field.name}]" %>
+    <p>
+      <%= render "fields/types/#{field.field_type}", field: field %>
+    </p>
+  <% end %>
+
+  <p>
+    <input type="submit">
+  </p>
+</form>

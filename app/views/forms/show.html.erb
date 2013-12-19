@@ -3,7 +3,7 @@
 <form class="disabled_form">
   <p>
     <label>URL:<br>
-      <input type="text" value="<%= form_url(@form) %>" disabled>
+      <%=link_to new_form_response_url(@form), new_form_response_url(@form) %>
     </label>
   </p>
 
