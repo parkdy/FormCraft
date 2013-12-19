@@ -4,7 +4,7 @@ describe FieldData do
   let(:user) { FactoryGirl.create(:user) }
   let(:form) { FactoryGirl.create(:form, author_id: user.id) }
   let(:field) { FactoryGirl.create(:field, form_id: form.id) }
-  let(:response) { FactoryGirl.create(:response) }
+  let(:response) { FactoryGirl.create(:response, form_id: form.id) }
 
   subject(:field_data) do
     FactoryGirl.build(:field_data, field_id: field.id,

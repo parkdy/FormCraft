@@ -20,6 +20,8 @@ FormBuilder::Application.routes.draw do
     member do
       get 'preview'
     end
+
+    resources :responses, only: [:new, :create]
   end
 
   namespace :api do

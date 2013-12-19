@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :response do
     read false
+    form_id 1
   end
 end

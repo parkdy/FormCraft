@@ -19,6 +19,7 @@ describe Form do
 
   it { should belong_to :author }
   it { should have_many :fields }
+  it { should have_many :responses }
 
 
 

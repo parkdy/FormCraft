@@ -20,6 +20,7 @@ class Form < ActiveRecord::Base
   )
 
   has_many :fields, inverse_of: :form, dependent: :destroy
+  has_many :responses, inverse_of: :form, dependent: :destroy
 
 
 
