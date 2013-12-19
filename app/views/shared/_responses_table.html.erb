@@ -8,7 +8,7 @@
     <th>Status</th>
     <th>Submitted</th>
     <% form.fields.order(:pos).each do |field| %>
-      <th><%= field.name %></th>
+      <th><%= field.name.split(' ').map(&:capitalize).join(' ') %></th>
     <% end %>
   </tr>
 

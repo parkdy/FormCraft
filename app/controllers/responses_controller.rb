@@ -5,7 +5,7 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    @form = Form.find(params[:form_id])
+    @form = Form.includes(:fields).find(params[:form_id])
     @response = @form.responses.build
 
     params[:response].map do |name, value|
@@ -28,6 +28,15 @@ class ResponsesController < ApplicationController
     else
       flash.now[:errors] = @response.errors.full_messages
       render :new
+    end
+  end
+
+  def index
+    @form = Form.includes(:fields).includes(:responses).find(params[:form_id])
+
+    respond_to do |format|
+      format.html { render :index }
+      format.csv { render text: @form.responses_csv }
     end
   end
 end

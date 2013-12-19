@@ -17,7 +17,7 @@ FormBuilder::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :forms, only: [:show, :create, :update, :destroy, :new, :edit] do
-    resources :responses, only: [:new, :create]
+    resources :responses, only: [:new, :create, :index]
   end
 
   namespace :api do

@@ -92,4 +92,28 @@ class Form < ActiveRecord::Base
   def as_json(options = nil)
     super(options.merge(include: {fields: {include: [:field_options]}}))
   end
+
+  # #responses_csv
+  # Convert form's responses to CSV format
+  def responses_csv
+    CSV.generate do |csv|
+      response_attribute_names = ["status", "submitted"]
+      field_names = self.fields.order(:pos).map(&:name)
+
+      header_row = response_attribute_names + field_names
+
+      self.responses.order(:created_at).each do |response|
+        row = [
+          (response.read ? "read" : "unread"), # status
+          response.created_at.to_date # submitted
+        ]
+
+        self.fields.order(:pos).each do |field|
+          row << response.field_data.find_by_field_id(field.id).value
+        end
+
+        csv << row
+      end
+    end
+  end
 end

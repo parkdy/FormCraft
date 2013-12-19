@@ -23,5 +23,5 @@
 <h3>Responses (<%= @form.responses.count %>)</h3>
 
 <% if @form.responses.count > 0 %>
-  <%= render "responses_table", form: @form %>
+  <%= render "shared/responses_table", form: @form %>
 <% end %>
