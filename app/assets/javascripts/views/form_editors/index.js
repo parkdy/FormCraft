@@ -121,12 +121,26 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
   discardForm: function(event) {
     event.preventDefault();
 
+
     if (confirm('Discard your work?')) {
-      FormBuilder.form.fetch({
-        success: function() {
-          FormBuilder.formEditorsIndex.render();
-        }
-      });
+      if (FormBuilder.form.isNew()) {
+        // Navigate to home page
+        var url = window.location.href;
+        var urlParts = url.split('/');
+        window.location.href = urlParts[0] + '//' + urlParts[2];
+
+      } else {
+        // Reload form
+        FormBuilder.form.fetch({
+          success: function() {
+            FormBuilder.formEditorsIndex.render();
+          },
+
+          error: function() {
+            "Could not fetch form"
+          }
+        });
+      }
     }
   }
 });

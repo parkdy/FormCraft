@@ -1,4 +1,12 @@
 class Api::FieldsController < ApplicationController
+  before_filter :require_sign_in, only: [:show, :update, :destoy]
+
+  before_filter only: [:show ,:update, :destroy] do |c|
+    c.require_correct_user(Field.find(params[:id]).form.author, allow_admin: true)
+  end
+
+
+
   def show
     @field = Field.find(params[:id])
 

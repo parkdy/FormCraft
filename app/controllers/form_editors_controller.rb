@@ -1,4 +1,12 @@
 class FormEditorsController < ApplicationController
+  before_filter :require_sign_in
+
+  before_filter do |c|
+    params[:form_id] && c.require_correct_user(Form.find(params[:form_id]).author, allow_admin: true)
+  end
+
+
+
   def index
     if params[:form_id]
     	@form = Form.includes(fields: [:field_options]).find(params[:form_id])

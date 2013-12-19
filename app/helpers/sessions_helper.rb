@@ -22,8 +22,17 @@ module SessionsHelper
 
   def require_sign_in
     unless signed_in?
-      flash[:fail] = "You must sign in to do that"
-      redirect_to signin_url
+      respond_to do |format|
+        format.html do
+          flash[:fail] = "You must sign in to do that"
+          redirect_to signin_url
+        end
+
+        format.json do
+          render json: { errors: ["You must sign in to do that"] },
+                       status: :unauthorized
+        end
+      end
     end
   end
 
@@ -46,8 +55,17 @@ module SessionsHelper
     options = default_options.merge(options)
 
     unless current_user == user || (options[:allow_admin] && current_user.admin?)
-      flash[:fail] = "You do not have permission to do that"
-      redirect_to root_url
+      respond_to do |format|
+        format.html do
+          flash[:fail] = "You do not have permission to do that"
+          redirect_to root_url
+        end
+
+        format.json do
+          render json: { errors: ["You must sign in to do that"] },
+                       status: :unauthorized
+        end
+      end
     end
   end
 

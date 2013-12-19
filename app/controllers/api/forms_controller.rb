@@ -1,4 +1,12 @@
 class Api::FormsController < ApplicationController
+  before_filter :require_sign_in, only: [:show, :update, :destoy]
+
+  before_filter only: [:show ,:update, :destroy] do |c|
+    c.require_correct_user(Form.find(params[:id]).author, allow_admin: true)
+  end
+
+
+
   def show
     @form = Form.find(params[:id])
 
