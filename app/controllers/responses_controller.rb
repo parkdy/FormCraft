@@ -9,9 +9,16 @@ class ResponsesController < ApplicationController
     @response = @form.responses.build
 
     params[:response].map do |name, value|
+      field = Field.find_by_name(name)
+
+      if value.is_a?(Array)
+        value.delete("")
+        value = value.to_json
+      end
+
       @response.field_data.build(
         value: value,
-        field_id: Field.find_by_name(name).id
+        field_id: field.id
       )
     end
 

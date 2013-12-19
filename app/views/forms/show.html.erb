@@ -19,3 +19,7 @@
   <%= button_to "Delete", form_url(@form), method: :delete,
               data: { confirm: "Are you sure you want to delete this form?" } %>
 </p>
+
+<h3>Responses (<%= @form.responses.count %>)</h3>
+
+<%= render "responses_table", form: @form %>

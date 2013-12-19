@@ -1,0 +1,27 @@
+<table id="responses_table">
+  <tr>
+    <th colspan="2"></th>
+    <th colspan="<%= form.fields.count %>">Fields</th>
+  </tr>
+
+  <tr>
+    <th>Status</th>
+    <th>Submitted</th>
+    <% form.fields.order(:pos).each do |field| %>
+      <th><%= field.name %></th>
+    <% end %>
+  </tr>
+
+  <% form.responses.order(:created_at).each do |response| %>
+    <tr>
+        <td><%= (response.read ? "Read" : "Unread") %>
+        <td><%= response.created_at.to_date %></td>
+
+        <% form.fields.order(:pos).each do |field| %>
+          <td>
+            <%= response.field_data.find_by_field_id(field.id).value %>
+          </td>
+        <% end %>
+    </tr>
+  <% end %>
+</table>

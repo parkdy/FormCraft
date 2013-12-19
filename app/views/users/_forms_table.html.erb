@@ -1,0 +1,20 @@
+<table id="forms_table">
+  <tr>
+    <th></th>
+    <th colspan="2">Responses</th>
+  </tr>
+
+  <tr>
+    <th>Title</th>
+    <th>New</th>
+    <th>Total</th>
+  </tr>
+
+  <% forms.each do |form| %>
+    <tr>
+      <td><%= link_to form.title, form_url(form) %></td>
+      <td><%= form.responses.where(read: false).count %></td>
+      <td><%= form.responses.count %></td>
+    </tr>
+  <% end %>
+</table>
