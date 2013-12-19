@@ -49,9 +49,4 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     redirect_to form_editor_url(mode: "edit", form_id: @form.id)
   end
-
-  def preview
-    @form = Form.find(params[:id])
-    redirect_to form_editor_url(mode: "preview", form_id: @form.id)
-  end
 end
