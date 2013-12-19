@@ -22,6 +22,12 @@
 
 <h3>Responses (<%= @form.responses.count %>)</h3>
 
+<p>
+  <a href="<%= form_responses_url(@form, format: :csv) %>">
+    <button>Download CSV</button>
+  </a>
+</p>
+
 <% if @form.responses.count > 0 %>
   <%= render "shared/responses_table", form: @form %>
 <% end %>

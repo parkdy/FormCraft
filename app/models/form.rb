@@ -101,6 +101,7 @@ class Form < ActiveRecord::Base
       field_names = self.fields.order(:pos).map(&:name)
 
       header_row = response_attribute_names + field_names
+      csv << header_row
 
       self.responses.order(:created_at).each do |response|
         row = [
