@@ -19,6 +19,7 @@ class Field < ActiveRecord::Base
 
   belongs_to :form, inverse_of: :fields
   has_many :field_options, inverse_of: :field, dependent: :destroy
+  has_many :field_data, class_name: "FieldData", inverse_of: :field, dependent: :destroy
 
 
 

@@ -21,6 +21,7 @@ describe Field do
 
   it { should belong_to :form }
   it { should have_many :field_options }
+  it { should have_many :field_data }
 
 
 

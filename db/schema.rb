@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131218162838) do
+ActiveRecord::Schema.define(:version => 20131219143153) do
+
+  create_table "field_data", :force => true do |t|
+    t.integer  "field_id",    :null => false
+    t.integer  "response_id", :null => false
+    t.string   "value",       :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "field_data", ["field_id"], :name => "index_field_data_on_field_id"
+  add_index "field_data", ["response_id", "field_id"], :name => "index_field_data_on_response_id_and_field_id", :unique => true
+  add_index "field_data", ["response_id"], :name => "index_field_data_on_response_id"
 
   create_table "field_options", :force => true do |t|
     t.integer  "field_id",                      :null => false
@@ -47,6 +59,12 @@ ActiveRecord::Schema.define(:version => 20131218162838) do
   end
 
   add_index "forms", ["author_id"], :name => "index_forms_on_author_id"
+
+  create_table "responses", :force => true do |t|
+    t.boolean  "read",       :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",                            :null => false
