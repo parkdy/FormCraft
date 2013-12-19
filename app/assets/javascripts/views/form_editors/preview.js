@@ -3,8 +3,8 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
 
   events: {
     "click .delete_field_btn": "deleteField",
-    "click .preview_field": "editField",
-    "mousedown .preview_field": "dragField"
+    "mousedown .preview_field": "editOrDragField",
+    "click #submit_btn": "dummyButton"
   },
 
   render: function() {
@@ -35,6 +35,11 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
     FormBuilder.formEditorsIndex.renderPreviewView();
   },
 
+  editOrDragField: function(event) {
+    this.editField(event);
+    this.dragField(event);
+  },
+
   editField: function(event){
     // This prevented radio buttons from working in preview window
     // event.preventDefault();
@@ -59,7 +64,7 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
 
     $previewField = $(event.target).closest('.preview_field');
 
-    $(".preview_field").droppable({
+    $(".field_slot").droppable({
       tolerance: "pointer",
       drop: function(event, ui) {
         var oldPos = parseInt($previewField.attr('data-pos'));
@@ -73,8 +78,16 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
 
         // Re-render preview
         FormBuilder.formEditorsIndex.renderPreviewView();
+
+        // Highlight active field
+        $(".preview_field").removeClass("active_field");
+        $(".preview_field[data-pos="+newPos+"]").addClass("active_field");
       }
     });
+  },
+
+  dummyButton: function(event) {
+    event.preventDefault();
   }
 
 });

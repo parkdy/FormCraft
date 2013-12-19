@@ -1,12 +1,12 @@
 #form_editor {
-  border: 2px solid black;
+  border: 1px solid black;
   width: 1000px;
   height: 800px;
   position: relative;
 }
 
 #editor_window {
-  background: #eee;
+  background: #dfdfdf;
   width: 300px;
   height: 800px;
   float: left;
@@ -33,14 +33,14 @@
   padding: 10px 0;
 
   border-style: solid;
-  border-color: gray;
+  border-color: lightgray;
   border-width: 1px;
   border-radius: 10px 10px 0 0;
 }
 
 .active_tab {
-  background-color: #eee;
-  border-bottom: 1px solid #eee;
+  background-color: #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 #editor_view {
@@ -67,6 +67,7 @@
 
 .preview_field {
   border: 1px solid transparent;
+  padding: 5px 0;
 }
 
 .preview_field:hover {
@@ -74,16 +75,11 @@
 }
 
 .active_field {
-  background: lightyellow;
+  background: #ff8;
 }
 
 .field_slot {
-  min-height: 10px;
-  border: 1px dashed transparent;
-}
-
-.field_slot:hover {
-  border: 1px dashed black;
+  border: 1px dashed lightgray;
 }
 
 .preview_field_field {
@@ -92,6 +88,10 @@
 
 .preview_field_btn {
   float: right;
+}
+
+#submit_btn {
+  margin: 5px 0;
 }
 
 .settings_field {

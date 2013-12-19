@@ -34,7 +34,7 @@ FormBuilder.Views.FormEditorsAddField = Backbone.View.extend({
   dragAddField: function(event) {
     var field_type = $(event.target).closest('.field_type').attr('data-type');
 
-    $(".preview_field").droppable({
+    $(".field_slot").droppable({
       tolerance: "pointer",
       drop: function(event, ui) {
         var newPos = parseInt($(event.target).attr('data-pos'));

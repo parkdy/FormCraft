@@ -1,14 +1,17 @@
-<div>
-  <h2><%= form.get("title") %></h2>
-</div>
+
 
 <form id="preview_form">
+  <div>
+    <h2><%= form.get("title") %></h2>
+  </div>
+
   <% form.get("fields").each(function(field, idx) { %>
-  	<%= JST["form_editors/preview/field_slot"]({ pos: idx }) %>
-    <%= JST["form_editors/preview/preview_field"]({ field: field, pos: idx }) %>
+  	<div class="field_slot" data-pos="<%= idx %>">
+	  <%= JST["form_editors/preview/preview_field"]({field: field, pos: idx }) %>
+	</div>
   <% }); %>
 
-  <%= JST["form_editors/preview/field_slot"]({ pos: form.get("fields").length }) %>
+  <div class="field_slot" data-pos="<%= form.get("fields").length %>">
+  	<button id="submit_btn">Submit</button>
+  </div>
 </form>
-
-<button id="submit_btn">Submit</button>
