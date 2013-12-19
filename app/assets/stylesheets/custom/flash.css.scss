@@ -1,5 +1,15 @@
 /* Flash */
 
+#flash_list {
+  width: 960px;
+  border-style: solid;
+  border-color: gray;
+  border-width: 0 1px 1px 1px;
+  margin: auto;
+  padding: 10px 20px;
+  background: lightyellow;
+}
+
 .flash_success_item {
   color: green;
 }

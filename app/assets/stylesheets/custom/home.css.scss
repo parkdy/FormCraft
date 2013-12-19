@@ -1,13 +1,11 @@
 #home_page {
 	width: 400px;
-	margin: 50px auto;
+	margin: auto;
+  padding: 50px 0;
+
 	text-align: center;
 
 	p {
 		text-align: justify;
-	}
-
-	.button_to input[type=submit] {
-		width: 100px;
 	}
 }

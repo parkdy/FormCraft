@@ -1,17 +1,16 @@
 /* Reset styles */
-
-html, body, div, span, section, header, footer, nav,
-h1, h2, h3, h4, h5, h6, ul, li, p, a, img, table, th, tr, td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-family: inherit;
-}
-
+html, body, div, span, section, header, footer, nav, ul, li,
+h1, h2, h3, h4, h5, h6, p, a, img, table, th, tr, td,
 button, form, label, input, textarea, select, option {
   margin: 0;
   padding: 0;
   font-family: inherit;
+  font-size: inherit;
+}
+
+html, body, div, span, section, header, footer, nav,
+h1, h2, h3, h4, h5, h6, ul, li, p, a, img, table, th, tr, td {
+  border: 0;
 }
 
 ul, li {
@@ -38,6 +37,7 @@ a {
 
 body {
 	font-family: sans-serif;
+  font-size: 12pt;
 	background-color: lightgray;
 }
 
@@ -50,7 +50,7 @@ body {
 	min-height: 400px;
 	width: 960px;
 	margin: auto;
-	padding: 20px;
+	padding: 0px 20px 20px 20px;
 	border-style: solid;
 	border-color: gray;
 	border-width: 0 1px 1px 1px;
@@ -61,7 +61,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2, h3, h4, h5, h6 {
-	margin: 20px 0;
+	padding: 20px 0;
+}
+
+h2 {
+  font-size: 22pt;
+}
+
+h3 {
+  font-size: 20pt;
+}
+
+h4 {
+  font-size: 18pt;
+}
+
+h5 {
+  font-size: 16pt;
+}
+
+h6 {
+  font-size: 14pt;
 }
 
 #flash_list {
@@ -72,17 +92,39 @@ p {
 	margin: 10px 0;
 }
 
+a:link {
+  color: blue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: purple;
+}
+
+a:active {
+  color: red;
+}
+
+input, textarea, select {
+  min-height: 20px;
+  min-width: 120px;
+}
+
 .button_to {
 	margin: 10px 0px;
 }
 
 input[type=submit], button {
+  min-width: 100px;
 	height: 30px;
 	padding: 5px 10px;
-	font-weight: bold;
 	border: 0;
-	border-radius: 2px;
-	background-color: #26f;
+	border-radius: 5px;
+	background-color: #37f;
+  box-shadow: -1px 1px 1px 0 #444;
 	color: white;
 }
 
@@ -91,10 +133,12 @@ input[type=submit]:hover, button:hover {
 }
 
 input[type=submit].small_btn, button.small_btn {
-	height: 20px;
-	width: 20px;
+	min-width: 0;
+  height: 30px;
+	width: 30px;
 	padding: 0;
-	border-radius: 10px;
+	border-radius: 15px;
+  font-weight: bold;
 }
 
 input[type=submit].small_btn.delete_btn {

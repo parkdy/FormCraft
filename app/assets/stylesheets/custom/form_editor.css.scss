@@ -1,15 +1,13 @@
 #form_editor {
   border: 1px solid lightgray;
-  border-radius: 10px;
   width: 958px;
-  height: 800px;
   position: relative;
 }
 
 #editor_window {
   background: #dfdfdf;
   width: 360px;
-  height: 800px;
+  min-height: 500px;
   float: left;
   position: relative;
 }
@@ -17,7 +15,7 @@
 #preview_window {
   background: white;
   width: 578px;
-  height: 780px;
+  min-height: 480px;
   padding: 10px;
   float: left;
   position: relative;
@@ -32,6 +30,7 @@
   width: 118px;
   text-align: center;
   padding: 10px 0;
+  font-weight: bold;
 
   border-style: solid;
   border-color: lightgray;
@@ -138,6 +137,6 @@ button.delete_btn:hover {
   }
 
   input {
-    width: 100px;
+    width: 120px;
   }
 }
