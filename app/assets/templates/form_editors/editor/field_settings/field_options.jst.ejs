@@ -8,11 +8,11 @@
         <tr data-option_cid="<%= option.cid %>">
           <td><input type="text" class="option_label" name="<%= option.cid %>[label]" value="<%= option.get('label') %>"></td>
           <td><input type="text" class="option_value" name="<%= option.cid %>[value]" value="<%= option.get('value') %>"></td>
-          <td><button class="delete_option_btn">X</button></td>
+          <td><button class="small_btn delete_btn delete_option_btn">X</button></td>
         </tr>
       <% }); %>
 
-      <tr><td><button id="add_option_btn">Add Option</button></td></tr>
+      <tr><td><button id="add_option_btn" class="add_btn">Add Option</button></td></tr>
     </table>
   </label>
 </div>

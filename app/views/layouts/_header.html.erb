@@ -1,26 +1,34 @@
-<header class="group">
-  <h1>FormBuilder</h1>
+<header>
+  <section id="header_wrapper" class="group"> 
+    <a href="<%= root_url %>">
+      <h1>
+        <span class="app_name">
+          FormCraft
+        </span>
+      </h1>
+    </a>
 
-  <nav id="session_nav" class="group">
-    <% if signed_in? %>
-      <ul>
-        <li class="session_nav_item">
-          <%= link_to current_user.username, user_url(current_user) %>
-        </li>
-        <li class="session_nav_item">
-          <%= button_to "Sign Out", session_url, method: :delete %>
-        </li>
-      </ul>
+    <nav id="session_nav" class="group">
+      <% if signed_in? %>
+        <ul>
+          <li class="session_nav_item">
+            <%= link_to current_user.username, user_url(current_user) %>
+          </li>
+          <li class="session_nav_item">
+            <%= button_to "Sign Out", session_url, method: :delete %>
+          </li>
+        </ul>
 
-    <% else %>
-      <ul>
-        <li class="session_nav_item">
-          <%= link_to "Sign Up", signup_url %>
-        </li>
-        <li class="session_nav_item">
-          <%= link_to "Sign In", signin_url %>
-        </li>
-      </ul>
-    <% end %>
-  </nav>
+      <% else %>
+        <ul>
+          <li class="session_nav_item">
+            <%= button_to "Sign Up", signup_url, method: :get %>
+          </li>
+          <li class="session_nav_item">
+            <%= button_to "Sign In", signin_url, method: :get %>
+          </li>
+        </ul>
+      <% end %>
+    </nav>
+  </section>
 </header>

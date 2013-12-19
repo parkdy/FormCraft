@@ -1,13 +1,14 @@
 #form_editor {
-  border: 1px solid black;
-  width: 1000px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  width: 958px;
   height: 800px;
   position: relative;
 }
 
 #editor_window {
   background: #dfdfdf;
-  width: 300px;
+  width: 360px;
   height: 800px;
   float: left;
   position: relative;
@@ -15,7 +16,7 @@
 
 #preview_window {
   background: white;
-  width: 480px;
+  width: 578px;
   height: 780px;
   padding: 10px;
   float: left;
@@ -28,7 +29,7 @@
 
 .editor_tab {
   float: left;
-  width: 98px;
+  width: 118px;
   text-align: center;
   padding: 10px 0;
 
@@ -61,7 +62,20 @@
   border-style: solid;
 }
 
+.form_btn {
+  margin-right: 10px
+}
+
+button.delete_btn {
+  background-color: #f88;
+}
+
+button.delete_btn:hover {
+  background-color: red;
+}
+
 .field_type_btn {
+  margin-left: 10px;
   float: right;
 }
 
@@ -86,8 +100,16 @@
   float: left;
 }
 
-.preview_field_btn {
+.preview_field_nav {
   float: right;
+}
+
+.add_btn {
+  background-color: #6a6;
+}
+
+.add_btn:hover {
+  background-color: green;
 }
 
 #submit_btn {

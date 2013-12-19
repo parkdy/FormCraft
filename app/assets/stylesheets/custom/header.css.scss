@@ -5,17 +5,52 @@
 //}
 
 header {
-  background: lightgray;
+  background-color: #048;
+  height: 60px;
+  border-style: solid;
+  border-color: gray;
+  border-width: 0 0 1px 0;
 
-  h1 {
-    float: left;
-  }
+  #header_wrapper {
 
-  nav {
-    float: right;
+    width: 1000px;
+    margin: auto;
+    border-style: solid;
+    border-color: #036;
+    border-width: 0 1px;
 
-    li {
-      list-style: none;
+    h1 {
+      height: 40px;
+      padding: 10px 20px;
+      float: left;
+      color: white;
+      font-size: 24pt;
+    }
+
+    nav {
+      height: 40px;
+      padding: 10px 20px;
+      float: right;
+
+      li {
+        height: 40px;
+        margin-left: 10px;
+        float: left;
+        list-style: none;
+
+        a {
+          height:20px;
+          padding: 10px 0;
+          color: white;
+          font-size: 12pt;
+          font-weight: bold;
+          display: block;
+        }
+
+        .button_to {
+          margin: 5px 0;
+        }
+      }
     }
   }
 }

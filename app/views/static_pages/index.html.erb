@@ -1,25 +1,23 @@
-<h2>Welcome to FormBuilder!</h2>
+<section id="home_page">
+	<h2>Welcome to <span class="app_name">FormCraft</span>!</h2>
 
-<p>
-  This app lets you create custom online forms using a simple drag and drop interface.
-</p>
+	<p>
+	  This app lets you create custom online forms using a simple drag and drop interface.
+	</p>
 
-<p>
-  We handle all of the technical details and host the form here on this site. Just share the link to your form and anyone can use it!
-</p>
+	<p>
+	  We host the form here on this site and handle all of the technical details. Just share the link to your form and anyone can view and submit it!
+	</p>
 
-<p>
-  You can choose how you want to get your data. View it on this site, download it, or receive it by email!
-</p>
+	<p>
+	  You can choose how you want to receive your form results. View it on this site, download it, or receive it by email!
+	</p>
 
-<p>
-  <%= link_to "Sign In", signin_url %>
-</p>
+	<h3>Get Started</h3>
 
-<p>
-  <%= link_to "Sign Up", signup_url %>
-</p>
-
-<p>
-  <%= link_to "Guest", "#" %>
-</p>
+	<nav id="get_started_nav">
+	  <%= button_to "Sign In", signin_url, method: :get %>
+	  <%= button_to "Sign Up", signup_url, method: :get %>
+	  <%= button_to "Guest", "#", method: :get %>
+	</nav>
+</section>

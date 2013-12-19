@@ -10,9 +10,10 @@
 
   <%= render "layouts/header" %>
 
-  <%= render "layouts/flash", flash: flash %>
-
-  <%= yield %>
+  <section id="content">
+	<%= render "layouts/flash", flash: flash %>
+	<%= yield %>
+  </section>
 
 </body>
 </html>

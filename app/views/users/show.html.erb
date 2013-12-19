@@ -9,14 +9,14 @@
 </p>
 
 <p>
-  <%= link_to "Edit", edit_user_url(@user) %>
-  <%= link_to "Change Password", change_password_user_url(@user) %>
+  <%= button_to "Edit", edit_user_url(@user), method: :get %>
+  <%= button_to "Change Password", change_password_user_url(@user), method: :get %>
 </p>
 
 <h3>Forms (<%= @user.forms.count %>)</h3>
 
 <p>
-  <%= link_to "Create New Form", new_form_url %>
+  <%= button_to "Create New Form", new_form_url, method: :get %>
 </p>
 
 <%= render "shared/forms_table", forms: @user.forms %>

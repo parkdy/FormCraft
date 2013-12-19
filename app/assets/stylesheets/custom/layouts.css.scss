@@ -1,16 +1,26 @@
 /* Reset styles */
 
-//html, body, div, span, section, header, footer, nav,
-//h1, h2, h3, ul, li, p, a, img, table, th, tr, td,
-//button, form, label, input, textarea, select, option {
-//  margin: 0;
-//  padding: 0;
-//  border: 0;
-//}
+html, body, div, span, section, header, footer, nav,
+h1, h2, h3, h4, h5, h6, ul, li, p, a, img, table, th, tr, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: inherit;
+}
 
-//ul, li {
-//  list-style: none;
-//}
+button, form, label, input, textarea, select, option {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
 
 
 
@@ -24,13 +34,90 @@
 
 
 
+/* Styles */
+
+body {
+	font-family: sans-serif;
+	background-color: lightgray;
+}
+
+.app_name {
+	font-variant: small-caps;
+}
+
+#content {
+	background-color: white;
+	min-height: 400px;
+	width: 960px;
+	margin: auto;
+	padding: 20px; 
+	border-style: solid;
+	border-color: gray;
+	border-width: 0 1px 1px 1px;	
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: serif;
+}
+
+h2, h3, h4, h5, h6 {
+	margin: 20px 0;
+}
+
+#flash_list {
+	font-weight: bold;
+}
+
+p {
+	margin: 10px 0;
+}
+
+.button_to {
+	margin: 10px 0px;
+}
+
+input[type=submit], button {
+	height: 30px;
+	padding: 5px 10px;
+	font-weight: bold;
+	border: 0;
+	border-radius: 2px;
+	background-color: #26f;
+	color: white;
+}
+
+input[type=submit]:hover, button:hover {
+	background-color: #04f;
+}
+
+input[type=submit].small_btn, button.small_btn {
+	height: 20px;
+	width: 20px;
+	padding: 0;
+	border-radius: 10px;
+}
+
+input[type=submit].small_btn.delete_btn {
+	background-color: #f88;
+}
+
+input[type=submit].small_btn.delete_btn:hover {
+	background-color: red;
+}
+
 /* Tables */
 
 table {
   border: 1px solid black;
+
+  th, td {
+	border: 1px solid black;
+	padding: 5px;
+  }
+
+  .button_to {
+  	margin: 0;
+  }
 }
 
-th, td {
-  border: 1px solid black;
-  padding: 5px;
-}
+
