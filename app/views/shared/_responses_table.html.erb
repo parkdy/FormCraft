@@ -12,7 +12,7 @@
     <% end %>
   </tr>
 
-  <% form.responses.order(:created_at).each do |response| %>
+  <% responses.each do |response| %>
     <tr>
         <td><%= (response.read ? "Read" : "Unread") %>
         <td><%= response.created_at.to_date %></td>

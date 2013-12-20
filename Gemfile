@@ -67,3 +67,6 @@ gem 'backbone-on-rails'
 
 # JavaScript templates
 gem 'ejs'
+
+# Pagination
+gem 'kaminari'

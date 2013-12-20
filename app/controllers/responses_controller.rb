@@ -14,8 +14,8 @@ class ResponsesController < ApplicationController
     @form = Form.includes(:fields).find(params[:form_id])
     @response = @form.responses.build
 
-    params[:response].map do |name, value|
-      field = Field.find_by_name(name)
+    @form.fields.each do |field|
+      value = params[:response][field.name] || ""
 
       if value.is_a?(Array)
         value.delete("")
@@ -39,6 +39,7 @@ class ResponsesController < ApplicationController
 
   def index
     @form = Form.includes(:fields).includes(:responses).find(params[:form_id])
+    @responses = @form.responses.order(:created_at).page(params[:page])
 
     respond_to do |format|
       format.html { render :index }

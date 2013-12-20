@@ -26,5 +26,7 @@
 </p>
 
 <% if @user.forms.count > 0 %>
-  <%= render "forms_table", forms: @user.forms %>
+  <%= render "forms_table", forms: @forms %>
 <% end %>
+
+<nav><p><%= paginate @forms %></p></nav>

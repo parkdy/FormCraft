@@ -7,6 +7,7 @@ class FormsController < ApplicationController
 
   def show
     @form = Form.includes(:responses).find(params[:id])
+    @responses = @form.responses.order(:created_at).page(params[:page])
   end
 
   def destroy
