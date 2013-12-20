@@ -67,6 +67,9 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -158,6 +161,7 @@ DEPENDENCIES
   ejs
   factory_girl_rails
   faker
+  figaro
   jquery-rails
   kaminari
   letter_opener

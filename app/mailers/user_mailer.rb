@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "notifications@example.com"
+  default from: "admin@formcraft.org"
 
   def activation_email(user)
   	@user = user

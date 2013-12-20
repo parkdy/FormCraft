@@ -70,3 +70,6 @@ gem 'ejs'
 
 # Pagination
 gem 'kaminari'
+
+# Access secret information
+gem 'figaro'
