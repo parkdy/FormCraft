@@ -1,7 +1,7 @@
 class ResponsesController < ApplicationController
-  before_filter :require_sign_in, only: [:index]
+  before_filter :require_sign_in, only: [:index, :destroy]
 
-  before_filter only: [:index] do |c|
+  before_filter only: [:index, :destroy] do |c|
     c.require_correct_user(Form.find(params[:form_id]).author, allow_admin: true)
   end
 
@@ -30,7 +30,7 @@ class ResponsesController < ApplicationController
 
     if @response.save
       flash[:success] = "Submitted form response"
-      redirect_to root_url
+      redirect_to new_form_response_url(form_id: params[:form_id])
     else
       flash.now[:errors] = @response.errors.full_messages
       render :new
@@ -40,11 +40,19 @@ class ResponsesController < ApplicationController
   def index
     @form = Form.includes(:fields).includes(:responses).find(params[:form_id])
     @responses = @form.responses.order(:created_at).page(params[:page])
+    @page = params[:page]
 
     respond_to do |format|
-      format.html { render :index }
       format.csv { render text: @form.responses_csv }
       format.xls { render partial: "shared/responses_table", locals: { form: @form } }
     end
+  end
+
+  def destroy
+    @response = Response.find(params[:id])
+    @response.destroy
+
+    flash[:success] = "Deleted response"
+    redirect_to form_url(params[:form_id], page: params[:page])
   end
 end

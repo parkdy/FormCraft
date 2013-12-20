@@ -1,7 +1,0 @@
-<h2>Responses (<%= @form.responses.count %>)</h2>
-
-<% if @form.responses.count > 0 %>
-  <%= render "shared/responses_table", form: @form, responses: @responses %>
-<% end %>
-
-<nav><p><%= paginate @responses %></p></nav>

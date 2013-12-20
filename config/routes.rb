@@ -17,7 +17,7 @@ FormCraft::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :forms, only: [:show, :create, :update, :destroy, :new, :edit] do
-    resources :responses, only: [:new, :create, :index]
+    resources :responses, only: [:new, :create, :index, :destroy]
   end
 
   namespace :api do

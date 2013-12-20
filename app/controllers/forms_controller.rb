@@ -8,6 +8,7 @@ class FormsController < ApplicationController
   def show
     @form = Form.includes(:responses).find(params[:id])
     @responses = @form.responses.order(:created_at).page(params[:page])
+    @page = params[:page]
   end
 
   def destroy
@@ -15,7 +16,7 @@ class FormsController < ApplicationController
     @form.destroy
 
     flash[:success] = "Deleted form"
-    redirect_to user_url(current_user)
+    redirect_to user_url(current_user, page: params[:page])
   end
 
   def new

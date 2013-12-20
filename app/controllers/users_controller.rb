@@ -15,11 +15,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.page(params[:page])
+    @page = params[:page]
   end
 
   def show
     @user = User.find(params[:id])
     @forms = @user.forms.page(params[:page])
+    @page = params[:page]
   end
 
   def new
@@ -73,7 +75,7 @@ class UsersController < ApplicationController
 
     @user.destroy
     flash[:success] = "Deleted user"
-    redirect_to users_url
+    redirect_to users_url(page: params[:page])
   end
 
   # #change_password

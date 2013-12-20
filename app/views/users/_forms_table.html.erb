@@ -5,6 +5,7 @@
   </tr>
 
   <tr>
+    <th></th>
     <th>Title</th>
     <th>New</th>
     <th>Total</th>
@@ -12,6 +13,13 @@
 
   <% forms.each do |form| %>
     <tr>
+      <td>
+        <%= button_to "X",
+            form_url(form, page: page),
+            method: :delete,
+            data: { confirm: "Are you sure you want to delete this form?" },
+            class: "small_btn delete_btn" %>
+      </td>
       <td><%= link_to form.title, form_url(form) %></td>
       <td><%= form.responses.where(read: false).count %></td>
       <td><%= form.responses.count %></td>

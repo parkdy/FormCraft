@@ -5,6 +5,7 @@
   </tr>
 
   <tr>
+    <th></th>
     <th>Status</th>
     <th>Submitted</th>
     <% form.fields.order(:pos).each do |field| %>
@@ -14,14 +15,22 @@
 
   <% responses.each do |response| %>
     <tr>
-        <td><%= (response.read ? "Read" : "Unread") %>
-        <td><%= response.created_at.to_date %></td>
+      <td>
+        <%= button_to "X",
+            form_response_url(response, page: page, form_id: response.form.id),
+            method: :delete,
+            data: { confirm: "Are you sure you want to delete this response?" },
+            class: "small_btn delete_btn" %>
+      </td>
 
-        <% form.fields.order(:pos).each do |field| %>
-          <td>
-            <%= response.field_data.find_by_field_id(field.id).value %>
-          </td>
-        <% end %>
+      <td><%= (response.read ? "Read" : "Unread") %>
+      <td><%= response.created_at.to_date %></td>
+
+      <% form.fields.order(:pos).each do |field| %>
+        <td>
+          <%= response.field_data.find_by_field_id(field.id).value %>
+        </td>
+      <% end %>
     </tr>
   <% end %>
 </table>
