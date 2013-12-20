@@ -14,13 +14,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page])
+    @users = User.order(:username).page(params[:page])
     @page = params[:page]
   end
 
   def show
     @user = User.find(params[:id])
-    @forms = @user.forms.page(params[:page])
+    @forms = @user.forms.order(:title).page(params[:page])
     @page = params[:page]
   end
 
