@@ -113,6 +113,15 @@ input, textarea, select {
   min-width: 120px;
 }
 
+.group > .button_to, .group > button {
+  float: left;
+  margin-left: 20px;
+}
+
+.group > .button_to:first-child, .group > button:first-child {
+  margin-left: 0px;
+}
+
 .button_to {
 	margin: 10px 0px;
 }

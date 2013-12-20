@@ -15,9 +15,11 @@
 </form>
 
 <p>
-  <%= button_to "Edit", edit_form_url(@form), method: :get %>
-  <%= button_to "Delete", form_url(@form), method: :delete,
+  <nav class="group">
+    <%= button_to "Edit", edit_form_url(@form), method: :get %>
+    <%= button_to "Delete", form_url(@form), method: :delete,
               data: { confirm: "Are you sure you want to delete this form?" } %>
+  </nav>
 </p>
 
 <h3>Responses (<%= @form.responses.count %>)</h3>
