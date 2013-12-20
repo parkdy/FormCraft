@@ -19,5 +19,10 @@ window.FormBuilder = {
   	// Initialize router
    	new FormBuilder.Routers.FormEditorsRouter();
    	Backbone.history.start();
+
+    // User can't save form without sign in
+    if (!this.form.get('author_id')) {
+      alert("You cannot save and publish forms as a guest.\nPlease sign in to save your work.")
+    }
   }
 };
