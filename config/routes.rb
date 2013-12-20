@@ -1,4 +1,4 @@
-FormBuilder::Application.routes.draw do
+FormCraft::Application.routes.draw do
 
   resources :users do
     member do

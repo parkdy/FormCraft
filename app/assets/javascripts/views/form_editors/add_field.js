@@ -1,4 +1,4 @@
-FormBuilder.Views.FormEditorsAddField = Backbone.View.extend({
+FormCraft.Views.FormEditorsAddField = Backbone.View.extend({
   template: JST['form_editors/editor/add_field'],
 
   events: {
@@ -20,15 +20,15 @@ FormBuilder.Views.FormEditorsAddField = Backbone.View.extend({
     var field_type = $button.closest('.field_type').attr('data-type');
 
     // Clone field prototype
-    var newField = FormBuilder.fieldTypes
+    var newField = FormCraft.fieldTypes
                               .findWhere({field_type: field_type})
                               .clone();
 
     newField.set('name', field_type + newField.cid);
 
     // Add new field to form fields
-    FormBuilder.form.get('fields').add(newField);
-    FormBuilder.formEditorsIndex.renderPreviewView();
+    FormCraft.form.get('fields').add(newField);
+    FormCraft.formEditorsIndex.renderPreviewView();
   },
 
   dragAddField: function(event) {
@@ -40,14 +40,14 @@ FormBuilder.Views.FormEditorsAddField = Backbone.View.extend({
         var newPos = parseInt($(event.target).attr('data-pos'));
 
         // Create field and drop it in desired position
-        var newField = FormBuilder.fieldTypes
+        var newField = FormCraft.fieldTypes
                                   .findWhere({field_type: field_type})
                                   .clone();
         newField.set('name', field_type + newField.cid);
-        FormBuilder.form.get('fields').add(newField, {at: newPos});
+        FormCraft.form.get('fields').add(newField, {at: newPos});
 
         // Re-render preview
-        FormBuilder.formEditorsIndex.renderPreviewView();
+        FormCraft.formEditorsIndex.renderPreviewView();
       }
     });
   }

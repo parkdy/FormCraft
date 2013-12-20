@@ -1,4 +1,4 @@
-FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
+FormCraft.Views.FormEditorsPreview = Backbone.View.extend({
   template: JST['form_editors/preview'],
 
   events: {
@@ -8,7 +8,7 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
   },
 
   render: function() {
-  	var renderedContent = this.template({ form: FormBuilder.form });
+  	var renderedContent = this.template({ form: FormCraft.form });
     this.$el.html(renderedContent);
 
   	return this;
@@ -20,19 +20,19 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
     // Get field model we need to delete
     var $field = $(event.target).closest('.preview_field');
     var field_pos = parseInt($field.attr('data-pos'));
-    var field = FormBuilder.form.get('fields').findWhere({pos: field_pos});
+    var field = FormCraft.form.get('fields').findWhere({pos: field_pos});
 
     // Delete it
-    FormBuilder.form.get('fields').remove(field);
-    FormBuilder.deletedFields.add(field);
+    FormCraft.form.get('fields').remove(field);
+    FormCraft.deletedFields.add(field);
 
     // Update other field's positions
-    FormBuilder.form.get('fields').each(function(field, pos) {
+    FormCraft.form.get('fields').each(function(field, pos) {
       field.set('pos', pos);
     });
 
     // Render preview
-    FormBuilder.formEditorsIndex.renderPreviewView();
+    FormCraft.formEditorsIndex.renderPreviewView();
   },
 
   editOrDragField: function(event) {
@@ -47,11 +47,11 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
     // Find field
     var $field = $(event.target).closest('.preview_field');
     var fieldPos = parseInt($field.attr('data-pos'));
-    var field = FormBuilder.form.get('fields').at(fieldPos);
+    var field = FormCraft.form.get('fields').at(fieldPos);
 
     // Open its field settings tab
-    FormBuilder.editorTab = "field_settings";
-    var indexView = FormBuilder.formEditorsIndex;
+    FormCraft.editorTab = "field_settings";
+    var indexView = FormCraft.formEditorsIndex;
     indexView.renderEditorTabs();
     indexView.renderEditorView({field: field});
 
@@ -71,13 +71,13 @@ FormBuilder.Views.FormEditorsPreview = Backbone.View.extend({
         var newPos = parseInt($(event.target).attr('data-pos'));
 
         // Move field
-        var fields = FormBuilder.form.get('fields');
+        var fields = FormCraft.form.get('fields');
         var field = fields.at(oldPos);
         fields.remove(field);
         fields.add(field, {at: newPos, merge: true});
 
         // Re-render preview
-        FormBuilder.formEditorsIndex.renderPreviewView();
+        FormCraft.formEditorsIndex.renderPreviewView();
 
         // Highlight active field
         $(".preview_field").removeClass("active_field");

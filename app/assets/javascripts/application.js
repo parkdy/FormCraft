@@ -17,7 +17,7 @@
 
 //= require underscore
 //= require backbone
-//= require form_builder
+//= require form_craft
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

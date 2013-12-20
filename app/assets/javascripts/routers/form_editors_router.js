@@ -1,11 +1,11 @@
-FormBuilder.Routers.FormEditorsRouter = Backbone.Router.extend({
+FormCraft.Routers.FormEditorsRouter = Backbone.Router.extend({
 	routes: {
 		"" : "formEditorsIndex"
 	},
 
 	formEditorsIndex: function() {
-		var formEditorsIndex = new FormBuilder.Views.FormEditorsIndex({ $el: $("#form_editor") });
+		var formEditorsIndex = new FormCraft.Views.FormEditorsIndex({ $el: $("#form_editor") });
 		formEditorsIndex.render();
-    FormBuilder.formEditorsIndex = formEditorsIndex;
+    FormCraft.formEditorsIndex = formEditorsIndex;
 	}
 });

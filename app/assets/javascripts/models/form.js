@@ -1,4 +1,4 @@
-FormBuilder.Models.Form = Backbone.Model.extend({
+FormCraft.Models.Form = Backbone.Model.extend({
 	urlRoot: "/api/forms",
 
 	parse: function(response) {
@@ -8,11 +8,11 @@ FormBuilder.Models.Form = Backbone.Model.extend({
 		});
 
 		// Then store it as a collection
-		response.fields = new FormBuilder.Collections.Fields(response.fields);
+		response.fields = new FormCraft.Collections.Fields(response.fields);
 
     // Store each field's options as a collection
     response.fields.each(function(field) {
-      field.set('field_options', new FormBuilder.Collections.FieldOptions(field.get('field_options')));
+      field.set('field_options', new FormCraft.Collections.FieldOptions(field.get('field_options')));
     });
 
 		return response;

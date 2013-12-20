@@ -1,4 +1,4 @@
-FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
+FormCraft.Views.FormEditorsFieldSettings = Backbone.View.extend({
   initialize: function(options) {
     this.field = options.field;
   },
@@ -20,7 +20,7 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
     }
 
     // Settings form fields
-    var settingsFields = new FormBuilder.Collections.Fields([
+    var settingsFields = new FormCraft.Collections.Fields([
       { field_type: "text", name: "label", label: "Label:", default: this.field.get('label') },
       { field_type: "text", name: "name", label: "Name (unique):", default: this.field.get('name') }
     ]);
@@ -52,7 +52,7 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
       this.field.set(fieldAttr, value);
     }
 
-    FormBuilder.formEditorsIndex.renderPreviewView();
+    FormCraft.formEditorsIndex.renderPreviewView();
   },
 
   dummyButton: function(event) {
@@ -93,7 +93,7 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
       option.set(optionsSettings[cid])
     };
 
-    FormBuilder.formEditorsIndex.renderEditorView({field: this.field});
+    FormCraft.formEditorsIndex.renderEditorView({field: this.field});
   },
 
   addFieldOption: function(event) {
@@ -101,10 +101,10 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
 
     var options = this.field.get('field_options');
     var optionValue = (options.length+1).toString();
-    var newOption = new FormBuilder.Models.FieldOption({label: "Option"+optionValue, value: optionValue});
+    var newOption = new FormCraft.Models.FieldOption({label: "Option"+optionValue, value: optionValue});
     options.add(newOption);
 
-    FormBuilder.formEditorsIndex.renderEditorView({field: this.field});
+    FormCraft.formEditorsIndex.renderEditorView({field: this.field});
   },
 
   deleteFieldOption: function(event) {
@@ -118,10 +118,10 @@ FormBuilder.Views.FormEditorsFieldSettings = Backbone.View.extend({
 
     // Delete it
     options.remove(option);
-    FormBuilder.deletedFieldOptions.add(option);
+    FormCraft.deletedFieldOptions.add(option);
 
-    FormBuilder.formEditorsIndex.renderEditorView({field: this.field});
-    FormBuilder.formEditorsIndex.renderPreviewView();
+    FormCraft.formEditorsIndex.renderEditorView({field: this.field});
+    FormCraft.formEditorsIndex.renderPreviewView();
   }
 
 });

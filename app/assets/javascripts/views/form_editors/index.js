@@ -1,4 +1,4 @@
-FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
+FormCraft.Views.FormEditorsIndex = Backbone.View.extend({
   initialize: function(options) {
     this.$el = options.$el;
   },
@@ -40,27 +40,27 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
     // Show which editor tab is active
     $(".editor_tab").removeClass("active_tab");
-    $("#"+FormBuilder.editorTab+"_tab").addClass("active_tab");
+    $("#"+FormCraft.editorTab+"_tab").addClass("active_tab");
   },
 
   renderEditorView: function(options) {
     var editorView;
 
-    switch (FormBuilder.editorTab) {
+    switch (FormCraft.editorTab) {
     case "add_field":
-      editorView = new FormBuilder.Views.FormEditorsAddField(options);
+      editorView = new FormCraft.Views.FormEditorsAddField(options);
       break;
     case "field_settings":
-      editorView = new FormBuilder.Views.FormEditorsFieldSettings(options);
+      editorView = new FormCraft.Views.FormEditorsFieldSettings(options);
       break;
     case "form_settings":
-      editorView = new FormBuilder.Views.FormEditorsFormSettings(options);
+      editorView = new FormCraft.Views.FormEditorsFormSettings(options);
       break;
     }
 
     this._swapEditorView(editorView);
 
-    if (FormBuilder.editorTab == 'add_field') {
+    if (FormCraft.editorTab == 'add_field') {
       $(".field_type_field").draggable({
         containment: "#form_editor",
         revert: true,
@@ -70,7 +70,7 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
   },
 
   renderPreviewView: function() {
-    var previewView = new FormBuilder.Views.FormEditorsPreview();
+    var previewView = new FormCraft.Views.FormEditorsPreview();
     this._swapPreviewView(previewView);
 
     $(".preview_field").draggable({
@@ -85,7 +85,7 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
     // Change editor tab
     var editorTab= $(event.target).attr("data-tab");
-    FormBuilder.editorTab = editorTab;
+    FormCraft.editorTab = editorTab;
 
     this.renderEditorTabs();
     this.renderEditorView();
@@ -99,19 +99,19 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
     if (confirm('Save your work?')) {
       // Destroy deleted fields
-      FormBuilder.deletedFields.each(function(field) {
+      FormCraft.deletedFields.each(function(field) {
         field.destroy({ wait: true });
       });
-      FormBuilder.deletedFields.reset();
+      FormCraft.deletedFields.reset();
 
       // Destroy deleted field options
-      FormBuilder.deletedFieldOptions.each(function(option) {
+      FormCraft.deletedFieldOptions.each(function(option) {
         option.destroy({ wait: true });
       });
-      FormBuilder.deletedFieldOptions.reset();
+      FormCraft.deletedFieldOptions.reset();
 
       // Save form
-      FormBuilder.form.save({}, {
+      FormCraft.form.save({}, {
         success: function() { alert("Saved form"); },
         error: function() { alert("Could not save form"); }
       });
@@ -123,7 +123,7 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
 
     if (confirm('Discard your work?')) {
-      if (FormBuilder.form.isNew()) {
+      if (FormCraft.form.isNew()) {
         // Navigate to home page
         var url = window.location.href;
         var urlParts = url.split('/');
@@ -131,9 +131,9 @@ FormBuilder.Views.FormEditorsIndex = Backbone.View.extend({
 
       } else {
         // Reload form
-        FormBuilder.form.fetch({
+        FormCraft.form.fetch({
           success: function() {
-            FormBuilder.formEditorsIndex.render();
+            FormCraft.formEditorsIndex.render();
           },
 
           error: function() {

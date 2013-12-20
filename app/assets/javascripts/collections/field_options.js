@@ -1,3 +1,3 @@
-FormBuilder.Collections.FieldOptions = Backbone.Collection.extend({
-  model: FormBuilder.Models.FieldOption
+FormCraft.Collections.FieldOptions = Backbone.Collection.extend({
+  model: FormCraft.Models.FieldOption
 });

@@ -1,3 +1,3 @@
-FormBuilder.Collections.Fields = Backbone.Collection.extend({
-  model: FormBuilder.Models.Field
+FormCraft.Collections.Fields = Backbone.Collection.extend({
+  model: FormCraft.Models.Field
 });
