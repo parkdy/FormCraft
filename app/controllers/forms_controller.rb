@@ -1,7 +1,7 @@
 class FormsController < ApplicationController
-  before_filter :require_sign_in, only: [:show, :create, :update, :destroy]
+  before_filter :require_sign_in, only: [:show, :create, :update, :destroy, :edit]
 
-  before_filter only: [:update, :destroy] do |c|
+  before_filter only: [:show, :edit, :update, :destroy] do |c|
     c.require_correct_user(Form.find(params[:id]).author, allow_admin: true)
   end
 

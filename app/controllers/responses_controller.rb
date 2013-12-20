@@ -1,4 +1,10 @@
 class ResponsesController < ApplicationController
+  before_filter :require_sign_in, only: [:index]
+
+  before_filter only: [:index] do |c|
+    c.require_correct_user(Form.find(params[:form_id]).author, allow_admin: true)
+  end
+
   def new
     @form = Form.includes(:fields).find(params[:form_id])
     @response = @form.responses.build
