@@ -32,9 +32,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      flash[:success] = "Created new user"
       sign_in!(@user)
-      redirect_to user_url(@user)
+      redirect_to send_activation_email_user_url(@user, flash: "Created new user")
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
@@ -101,6 +100,10 @@ class UsersController < ApplicationController
       rescue StandardError => e
         flash[:errors] = ["Unable to send activation email", e.message]
       end
+    end
+
+    if params[:flash]
+      flash[:success] = params[:flash] + ". " + flash[:success]
     end
 
     redirect_to user_url(@user)

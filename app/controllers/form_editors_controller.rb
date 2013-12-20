@@ -3,7 +3,9 @@ class FormEditorsController < ApplicationController
     params[:form_id] && c.require_correct_user(Form.find(params[:form_id]).author, allow_admin: true)
   end
 
-
+  before_filter do |c|
+    signed_in? && c.require_activation
+  end
 
   def index
     if params[:form_id]
