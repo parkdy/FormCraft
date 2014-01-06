@@ -17,6 +17,7 @@
 
 
 
+<!-- Bootstrap form editor JSON -->
 <script type="application/json" id="form_editor_json">
   { "form": <%= @form.to_json.html_safe %>,
     "mode": <%= @mode.to_json.html_safe %>,
@@ -24,6 +25,7 @@
     "fieldTypes": <%= @field_types.to_json.html_safe %> }
 </script>
 
+<!-- Run FormEditor app -->
 <script>
   $(document).ready(function(){
     FormCraft.initialize();

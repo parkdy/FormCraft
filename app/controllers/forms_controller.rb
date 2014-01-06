@@ -5,6 +5,8 @@ class FormsController < ApplicationController
     c.require_correct_user(Form.find(params[:id]).author, allow_admin: true)
   end
 
+
+
   def show
     @form = Form.includes(:responses).find(params[:id])
     @responses = @form.responses.order(:created_at).page(params[:page])

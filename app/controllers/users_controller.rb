@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     c.require_correct_user(User.find(params[:id]), { allow_admin: true })
   end
 
+
+
   def index
     @users = User.order(:username).page(params[:page])
     @page = params[:page]

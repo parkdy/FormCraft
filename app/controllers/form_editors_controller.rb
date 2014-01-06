@@ -7,6 +7,8 @@ class FormEditorsController < ApplicationController
     signed_in? && c.require_activation
   end
 
+
+
   def index
     if params[:form_id]
     	@form = Form.includes(fields: [:field_options]).find(params[:form_id])

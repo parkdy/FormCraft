@@ -5,6 +5,8 @@ class ResponsesController < ApplicationController
     c.require_correct_user(Form.find(params[:form_id]).author, allow_admin: true)
   end
 
+
+
   def new
     @form = Form.includes(:fields).find(params[:form_id])
     @response = @form.responses.build
