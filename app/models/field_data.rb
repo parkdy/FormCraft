@@ -13,5 +13,4 @@ class FieldData < ActiveRecord::Base
 
   belongs_to :field, inverse_of: :field_data
   belongs_to :response, inverse_of: :field_data
-
 end
