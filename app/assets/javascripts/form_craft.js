@@ -7,12 +7,15 @@ window.FormCraft = {
   initialize: function() {
   	// Bootstrap form JSON
   	var formEditorJSON = JSON.parse($("#form_editor_json").html());
+
+    // Save bootstrapped data in instance variables
   	this.form = new FormCraft.Models.Form(formEditorJSON.form, {parse: true});
     this.fieldTypes = new FormCraft.Collections.Fields(formEditorJSON.fieldTypes, {parse: true});
 
+    // Set default editor tab
     this.editorTab = "add_field";
 
-    // Keep track of models we need to delete
+    // Keep track of models we need to delete when saving the form
     this.deletedFields = new FormCraft.Collections.Fields([]);
     this.deletedFieldOptions = new FormCraft.Collections.FieldOptions([]);
 

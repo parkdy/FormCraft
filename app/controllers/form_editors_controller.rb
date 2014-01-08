@@ -21,6 +21,8 @@ class FormEditorsController < ApplicationController
     @field_types = field_types(@form)
   end
 
+
+
   private
 
     def field_types(form)
