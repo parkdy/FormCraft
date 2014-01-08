@@ -24,6 +24,12 @@ FormCraft.Views.FormEditorsAddField = Backbone.View.extend({
                               .findWhere({field_type: field_type})
                               .clone();
 
+    // Clone field's options
+    var newFieldOptions = _.map(newField.get('field_options').models,
+                                function(option) { return option.clone(); });
+    newField.set('field_options', new FormCraft.Collections.FieldOptions(newFieldOptions));
+
+    // Set field's unique name
     newField.set('name', field_type + newField.cid);
 
     // Add new field to form fields

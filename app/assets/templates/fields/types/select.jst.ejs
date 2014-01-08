@@ -1,8 +1,11 @@
-<label><%= field.get('label') %><br>
+<label>
+  <%= field.get('label') %><br>
+
   <select name="<%= field.get('name') %>">
     <% field.get('field_options').each(function(option) { %>
     	  <option value="<%= option.get('value') %>"
                 <%= (option.get('value') == field.get('default') ? 'selected' : '' ) %>>
+
           <%= option.get('label') %>
         </option>
     <% }); %>
