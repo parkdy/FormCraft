@@ -38,7 +38,7 @@ a {
 body {
 	font-family: sans-serif;
   font-size: 12pt;
-	background-color: lightgray;
+	background-color: #ccc;
 }
 
 .app_name {
@@ -52,7 +52,7 @@ body {
 	margin: auto;
 	padding: 0px 20px 20px 20px;
 	border-style: solid;
-	border-color: gray;
+	border-color: #aaa;
 	border-width: 0 1px 1px 1px;
 }
 
@@ -127,13 +127,12 @@ input[type=submit], button {
 	padding: 5px 10px;
 	border: 0;
 	border-radius: 5px;
-	background-color: #37f;
-  box-shadow: -1px 1px 1px 0 #444;
+	background-color: #37e;
 	color: white;
 }
 
 input[type=submit]:hover, button:hover {
-	background-color: #04f;
+	background-color: #04e;
 }
 
 input[type=submit].small_btn, button.small_btn {

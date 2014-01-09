@@ -5,14 +5,14 @@
 //}
 
 header {
-  background-color: #048;
+  background-color: #084070;
   height: 80px;
   border-style: solid;
   border-color: gray;
   border-width: 0 0 1px 0;
 
   #header_wrapper {
-
+    background: linear-gradient(to bottom, #158, #036);
     width: 1000px;
     margin: auto;
     border-style: solid;
@@ -23,10 +23,11 @@ header {
       color: white;
       display: block;
       float: left;
+      text-decoration: none;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: #cfe;
     }
 
     h1 {
