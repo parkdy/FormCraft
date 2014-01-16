@@ -26,10 +26,17 @@
 <h3>Responses (<%= @form.responses.count %>)</h3>
 
 <p>
-  Download as:
+  Download results as:
   <a href="<%= form_responses_url(@form, format: :csv) %>">CSV</a>
   |
   <a href="<%= form_responses_url(@form, format: :xls) %>">Excel</a>
+</p>
+
+<p>
+  Email results to <%= @form.author.email %>:
+  <%= link_to "Send Email", send_responses_email_form_url(@form) %>
+  |
+  <%= link_to "Change Email", edit_user_url(@form.author) %>
 </p>
 
 <% if @form.responses.count > 0 %>

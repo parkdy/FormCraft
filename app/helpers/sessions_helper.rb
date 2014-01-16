@@ -44,7 +44,7 @@ module SessionsHelper
   end
 
   def require_admin
-    unless current_user.admin?
+    unless signed_in? && current_user.admin?
       flash[:fail] = "You do not have administrative privileges"
       redirect_to root_url
     end
@@ -54,7 +54,7 @@ module SessionsHelper
     default_options = { allow_admin: true }
     options = default_options.merge(options)
 
-    unless current_user == user || (options[:allow_admin] && current_user.admin?)
+    unless current_user == user || (options[:allow_admin] && signed_in? && current_user.admin?)
       respond_to do |format|
         format.html do
           flash[:fail] = "You do not have permission to do that"
