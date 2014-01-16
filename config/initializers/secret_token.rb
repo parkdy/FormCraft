@@ -4,4 +4,13 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-FormCraft::Application.config.secret_token = '80b3688259a626bbdcfda16a1b5f13a169d40627cadf8bb813e5950cd11f25e04dac3bdba6e2cbd50ed891282ac56e92957f6ac1812f48748628796235370fde'
+
+# In production environment (Heroku)
+# Set secret token by entering the command:
+# heroku config:set SECRET_TOKEN=`rake secret`
+
+# or add it to 'config/application.yml':
+# SECRET_TOKEN: <insert secret token>
+
+FormCraft::Application.config.secret_token =
+  (Rails.env.production? ? ENV["SECRET_TOKEN"] : 'sometoken')
