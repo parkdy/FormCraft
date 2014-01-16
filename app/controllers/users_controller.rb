@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # Before Filters
+
   before_filter :require_sign_in, only: [:index, :show, :edit, :update, :destroy,
                                          :change_password, :send_activation_email]
   before_filter :require_sign_out, only: [:new, :create, :forgot_password, :send_recovery_email]
@@ -14,6 +16,8 @@ class UsersController < ApplicationController
   end
 
 
+
+  # Actions
 
   def index
     @users = User.order(:username).page(params[:page])
@@ -47,26 +51,38 @@ class UsersController < ApplicationController
   end
 
   # #update
-  # Handles PUT requests from #edit, #change_password, and #reset password
+  # Handles PUT requests from #edit
   def update
     @user = User.find(params[:id])
 
-    if params[:user][:password] && params[:current_password] && !@user.authenticate(params[:current_password])
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Updated user"
+      redirect_to user_url(@user)
+    else
+      flash.now[:errors] = @user.errors.full_messages
+      render :edit
+    end
+  end
+
+  # #update_password
+  # Handles PUT requests from #change_password, and #reset password
+  def update_password
+    @user = User.find(params[:id])
+
+    if params[:current_password] && !@user.authenticate(params[:current_password])
       flash.now[:fail] = "Current password incorrect"
       render :change_password
     elsif @user.update_attributes(params[:user])
-      flash[:success] = "Updated user"
+      flash[:success] = "Updated password"
       redirect_to user_url(@user)
     else
       flash.now[:errors] = @user.errors.full_messages
 
       # Render appropriate template
-      if params[:user][:password] && params[:current_user]
+      if params[:current_password]
         render :change_password
-      elsif params[:user][:password]
-        render :reset_password
       else
-        render :edit
+        render :reset_password
       end
     end
   end

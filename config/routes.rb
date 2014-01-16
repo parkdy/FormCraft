@@ -6,6 +6,7 @@ FormCraft::Application.routes.draw do
       get 'send_activation_email'
       get 'activate'
       get 'reset_password'
+      put 'update_password'
     end
 
     collection do
