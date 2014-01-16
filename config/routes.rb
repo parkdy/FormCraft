@@ -19,6 +19,10 @@ FormCraft::Application.routes.draw do
 
   resources :forms, only: [:show, :create, :update, :destroy, :new, :edit] do
     resources :responses, only: [:new, :create, :index, :destroy]
+
+    member do
+      get 'send_responses_email'
+    end
   end
 
   namespace :api do

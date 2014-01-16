@@ -29,4 +29,17 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     redirect_to form_editor_url(form_id: @form.id)
   end
+
+  def send_responses_email
+    @form = Form.find(params[:id])
+
+    begin
+      FormMailer.responses_email(@form).deliver!
+      flash[:success] = "Form responses email sent"
+    rescue StandardError => e
+      flash[:errors] = ["Unable to send form responses email", e.message]
+    end
+
+    redirect_to form_url(@form)
+  end
 end
