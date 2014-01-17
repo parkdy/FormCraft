@@ -17,47 +17,47 @@ admin.activate!
 user = FactoryGirl.create(:user, username: "user", email: "user@formcraft.org")
 user.activate!
 
-50.times do
-  FactoryGirl.create(:random_user)
-end
-
 
 
 # Create Forms
 
-forms = []
-50.times { forms << FactoryGirl.build(:random_form) }
-user.forms = forms
+form1 = user.forms.build(title: "Profile Form (pre-made)", 
+						 description: "This is a pre-made form to obtain a person's profile information.")
+user.forms << form1
 
-form1 = forms.first
-form1.title = "Profile Form"
-form1.description = "This is a form to obtain a person's profile."
+50.times do |i|
+	user.forms << FactoryGirl.create(:random_form, title: "Random Form " + ("%02d" % (i+1)))
+end
 
 user.save!
 
 # Create Fields
 
 field1 = FactoryGirl.build(:text_field, name: "name", label: "Name:")
-field2 = FactoryGirl.build(:textarea_field, name: "biography", label: "Biography:", default: "Enter text here...")
 
-field3 = FactoryGirl.build(:radio_field, name: "gender", label: "Gender:")
-field3.field_options = []
-field3.field_options.build(label: "Male", value: "M")
-field3.field_options.build(label: "Female", value: "F")
+field2 = FactoryGirl.build(:radio_field, name: "gender", label: "Gender:")
+field2.field_options = []
+field2.field_options.build(label: "Male", value: "M")
+field2.field_options.build(label: "Female", value: "F")
 
-field4 = FactoryGirl.build(:checkbox_field, name: "likes", label: "Likes:")
-field4.field_options = []
-field4.field_options.build(label: "Long walks on the beach", value: "Long walks on the beach")
-field4.field_options.build(label: "Candle lit dinners", value: "Candle lit dinners")
-
-field5 = FactoryGirl.build(:select_field, name: "favorite food", label: "Favorite Food:")
-field5.field_options = []
-field5.field_options.build(label: "Pizza", value: "pizza")
-field5.field_options.build(label: "Ice Cream", value: "ice cream")
-field5.field_options.build(label: "Chocolate", value: "chocolate")
+field3 = FactoryGirl.build(:textarea_field, name: "biography", label: "Biography:", default: "Enter text here...")
 
 form1.add_field!(field1)
 form1.add_field!(field2)
 form1.add_field!(field3)
-form1.add_field!(field4)
-form1.add_field!(field5)
+
+# Create Responses
+response_data = [
+	["Batman", "M", "I'm Batman!"],
+	["Superman", "M", "I'm unrecognizable in glasses."],
+	["Lois Lane", "F", "I'm a terrible journalist."]
+]
+
+response_data.each do |rdata|
+	response = form1.responses.build
+	form1.fields.order(:pos).each_with_index do |field, i|
+		response.field_data.build(field_id: field.id, value: rdata[i])
+	end
+end
+
+form1.save!
