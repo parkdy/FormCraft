@@ -13,4 +13,4 @@
 # SECRET_TOKEN: <insert secret token>
 
 FormCraft::Application.config.secret_token =
-  (Rails.env.production? ? ENV["SECRET_TOKEN"] : 'sometoken')
+  (Rails.env.production? ? ENV["SECRET_TOKEN"] : 'a'*30)
