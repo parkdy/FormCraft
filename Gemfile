@@ -44,7 +44,7 @@ gem 'faker'
 
 # Rspec for testing
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.5.0'
 end
 
 group :development do
